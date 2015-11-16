@@ -45,12 +45,13 @@ public class UserServiceImpl implements UserService{
     }
      
     public User findById(int id) {
-        for(User user : users){
-            if(user.getId() == id){
-                return user;
-            }
-        }
-        return null;
+    	try {
+			return userDao.getUserByID(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
     }
      
     public List<User> findByName(String name) {
@@ -80,9 +81,7 @@ public class UserServiceImpl implements UserService{
     }
  
     public boolean isUserExist(User user) {
-      //  return findByName(user.getUsername())!=null;
-    	//TODO USHA
-       return false;
+      return findByName(user.getUsername())!=null;
     }
      
     public void deleteAllUsers(){
@@ -109,12 +108,17 @@ public class UserServiceImpl implements UserService{
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
         UserService usrImpl = (UserService) context.getBean("userService");
-        /**User user = new User(23,"dfgNewUsha_Chacko","fgdfhdhNew","emailNew");
-    	usrImpl.saveUser(user); **/
-    	List<User> users = usrImpl.findByName("dfgNewUsha_Chacko"); 
+        User user = new User(23,"dfgNewUsha_Chacko","fgdfhdhNew","emailNew");
+    	usrImpl.saveUser(user);
+        
+        User usr = usrImpl.findById(26); 
+        usr.setCardno("NEWCARD123");
+        usrImpl.updateUser(usr);
+    	List<User> users = usrImpl.findByName("Adhi"); 
        // List<User> users = usrImpl.findAllUsers();
-    	for(User usr : users){
-    		System.out.println(usr.getUsername());
+    	for(User usr1 : users){
+    		System.out.println(usr1.getUsername());
+    		System.out.println(usr1.getCardno());
     	}
     	/**user.setEmail("New Email update.com");
     	usrImpl.updateUser(user);

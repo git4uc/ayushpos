@@ -10,6 +10,33 @@
 		<property name="username" column="USERNAME" />
 		<property name="password" column="PASSWORD" />
 		<property name="email" column="EMAIL" />
+		<property name="phone" column="PHONE" />
+		<property name="fax" column="FAX" />
+		<property name="address1" column="ADD1" />
+		<property name="address2" column="ADD2" />
+		<property name="address3" column="ADD3" />
+		<property name="cardno" column="CARDNO" />
+		<property name="cardexpdt" column="CARDEXPDT" />
+	</class>
+	
+		<class name="Item" table="ITEMS">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="name" column="NAME" />
+		<property name="price" column="PRICE" />
+		<property name="stock" column="STOCK" />
+		<property name="tax" column="TAX" />
+		<property name="discount" column="DISCOUNT" />
+		<property name="brandname" column="BRANDNAME" />
+		<property name="companyname" column="COMPANYNAME" />
+		<property name="catalogue" column="CATALOG" />
+		<property name="remarks" column="REMARKS" />
+		<property name="updatedby" column="UPDATEDBY" />
+		<property name="updatedone" column="UPDATEDONE" />
+		<property name="discontinued" column="DISCONTINUED" />
+		<property name="reasondiscont" column="REASONDISCONT" />
 	</class>
 
     

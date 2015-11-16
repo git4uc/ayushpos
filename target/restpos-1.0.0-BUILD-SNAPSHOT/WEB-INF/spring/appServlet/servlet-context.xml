@@ -57,5 +57,15 @@
 	</bean> 
 	
 	<bean id="userService" class="net.codejava.spring.service.UserServiceImpl">
-	</bean>    	
+	</bean> 
+	
+		<bean id="itemDao" class="net.codejava.spring.dao.ItemDAOImpl">
+	    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
+	<bean id="itemService" class="net.codejava.spring.service.ItemServiceImpl">
+	</bean> 
+	   	
 </beans>

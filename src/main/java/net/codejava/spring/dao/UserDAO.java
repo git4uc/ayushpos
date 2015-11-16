@@ -10,5 +10,5 @@ public interface UserDAO {
 	public void addUser(User user);	
     public void deleteUser(int id);
     public List<User> getUserByName(String name) throws Exception;
-    
+    public User getUserByID(int id) throws Exception;
 }

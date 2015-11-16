@@ -4,16 +4,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.codejava.spring.model.User;
-import net.codejava.spring.service.UserService;
-import net.codejava.spring.service.UserServiceImpl;
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 public class UserDAOImpl implements UserDAO {
@@ -85,21 +80,19 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 	
-	public List<User> GetUserByID(int id){
+
+	@Override
+	public User getUserByID(int id) throws Exception {
 		Session session = sessionFactory.openSession();
 		Query query = session.createSQLQuery(
 				"call GetUserByID(:id)")
 				.addEntity(User.class)
 				.setParameter("id", id);
-			List<User> result = query.list();
-			for(Iterator<User> iterator = query.list().iterator(); iterator.hasNext();){
-				User user = iterator.next();
-				System.out.println(user.getUsername());
-			}
-		return query.list();
-		
+			List<User> result= query.list();
+			if(!(result==null)) return (User) result.get(0);
+		return null;
 	}
-	
+
 	public void updateUser(User user) {
         Transaction trns = null;
 
@@ -160,6 +153,8 @@ public class UserDAOImpl implements UserDAO {
             session.close();
         }
     }
+
+
 
 
     

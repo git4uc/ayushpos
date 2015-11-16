@@ -29,9 +29,9 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/forusha/JAVA1.8"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/spring/appServlet"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Eclipse/workspace/Hibernate2015/hibernew/src/main/webapp/WEB-INF/spring/appServlet"/>
+	<classpathentry kind="lib" path="target/restpos-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
