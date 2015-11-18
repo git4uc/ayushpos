@@ -6,36 +6,29 @@ import java.io.InputStream;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.AbstractClientHttpResponse;
 
-public class ErrorResponse  extends AbstractClientHttpResponse {
+public class ErrorResponse   {
 
-	@Override
-	public int getRawStatusCode() throws IOException {
-		// TODO Auto-generated method stub
-		return 0;
+	//Usage - throw new PosException(ErrorCodes.INVALID_ID);
+
+	  private final int id;
+	  private final String msg;
+
+	  public ErrorResponse(ErrorCode errcd) {
+		    this.id = errcd.getId();
+		    this.msg = errcd.getMsg();
+		  }
+	  
+	  ErrorResponse(int id, String msg) {
+	    this.id = id;
+	    this.msg = msg;
+	  }
+
+	  public int getId() {
+	    return this.id;
+	  }
+
+	  public String getMsg() {
+	    return this.msg;
+	  }
 	}
 
-	@Override
-	public String getStatusText() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public InputStream getBody() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public HttpHeaders getHeaders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-}

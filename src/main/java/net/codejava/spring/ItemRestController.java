@@ -6,17 +6,23 @@ import java.util.List;
 
 
 
+
+
 import net.codejava.spring.dao.ItemDAO;
 import net.codejava.spring.dao.UserDAO;
 import net.codejava.spring.model.Item;
 import net.codejava.spring.service.ItemService;
 import net.codejava.spring.service.UserService;
+import net.codejava.spring.util.ErrorCode;
+import net.codejava.spring.util.ErrorResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,7 +93,10 @@ public class ItemRestController {
   
         if (itemService.isItemExist(Item)) {
             System.out.println("A Item with name " + Item.getName() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            ErrorResponse errResp = new ErrorResponse(ErrorCode.INVALID_ID);
+         //   return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+          //  return Response.status(400).entity(resp).build();
+            return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
         }
       //Implemeted - Usha
         itemService.saveItem(Item);
@@ -106,15 +115,26 @@ public class ItemRestController {
         System.out.println("Updating Item " + id);
           
         Item currentItem = itemService.findById(id);
-          
+        
         if (currentItem==null) {
             System.out.println("Item with id " + id + " not found");
             return new ResponseEntity<Item>(HttpStatus.BAD_REQUEST);
         }
-        System.out.println("Item with id " + id + "found ");
+        System.out.println("Item with id " + id + "  found ");
         currentItem.setName(Item.getName());
-        //TODO Add all the propertyhere
-
+        currentItem.setBrandname(Item.getBrandname());
+        currentItem.setCatalogue((Item.getCatalogue()));
+        currentItem.setCode(Item.getCode());
+        currentItem.setDiscontinued(Item.isDiscontinued());
+        currentItem.setCompanyname(Item.getCompanyname());
+        currentItem.setDiscount(Item.getDiscount());
+        currentItem.setPrice(Item.getPrice());
+        currentItem.setReasondiscont(Item.getReasondiscont());
+        currentItem.setRemarks(Item.getRemarks());
+        currentItem.setStock(Item.getStock());
+        currentItem.setTax(Item.getTax());
+        currentItem.setUpdatedby(Item.getUpdatedby());
+        currentItem.setUpdatedone(Item.getUpdatedone());
         //Implemented - Usha
         itemService.updateItem(currentItem);
         

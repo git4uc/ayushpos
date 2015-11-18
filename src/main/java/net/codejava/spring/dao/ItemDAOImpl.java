@@ -27,7 +27,6 @@ public class ItemDAOImpl implements ItemDAO {
 		getCurrentSession().
 		createCriteria(Item.class).
 		setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-
 		return listItem;
 	}
 	
