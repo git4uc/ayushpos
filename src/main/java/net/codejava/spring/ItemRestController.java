@@ -32,8 +32,6 @@ import org.springframework.web.util.UriComponentsBuilder;
   
 @RestController
 public class ItemRestController {
-	@Autowired
-	private ItemDAO itemDao;
 
 	@Autowired
 	   ItemService itemService;  //Service which will do all data retrieval/manipulation work 

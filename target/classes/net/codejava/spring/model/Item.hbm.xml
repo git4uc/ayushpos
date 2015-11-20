@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.codejava.spring.model">
+	<class name="Item" table="ITEMS">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="id" column="ID" />
+		<property name="code" column="CODE" />
+		<property name="name" column="NAME" />
+		<property name="price" column="PRICE" />
+		<property name="stock" column="STOCK" />
+		<property name="price" column="SALEPRICE" />
+		<property name="tax" column="TAX" />
+		<property name="discount" column="DISCOUNT" />
+		<property name="brandname" column="BRANDNAME" />
+		<property name="companyname" column="COMPANYNAME" />
+		<property name="catalog" column="CATALOG" />
+		<property name="remarks" column="REMARK" />
+		<property name="updatedby" column="UPDATEDBY" />
+		<property name="updatedone" column="UPDATEDONE" />
+		<property name="discontinued" column="DISCONTINUED" />
+		<property name="reasondiscont" column="REASONDISCONT" />
+	</class>
+    <sql-query name="callItemsByID_SP">
+	<return alias="user" class="net.codejava.spring.model.Item"/>
+    </sql-query>
+</hibernate-mapping>

@@ -47,6 +47,11 @@
         class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="annotatedClasses">
+            <list>
+                <value>net.codejava.spring.model.Category</value>
+            </list>
+        </property>
     </bean>
      
     
@@ -67,5 +72,15 @@
 	
 	<bean id="itemService" class="net.codejava.spring.service.ItemServiceImpl">
 	</bean> 
+	
+			<bean id="categoryDao" class="net.codejava.spring.dao.CategoryDAOImpl">
+	    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
+	<bean id="catService" class="net.codejava.spring.service.CatServiceImpl">
+	</bean> 
+	   	
 	   	
 </beans>
