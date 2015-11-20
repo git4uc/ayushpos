@@ -85,3 +85,30 @@ BEGIN
    SELECT * FROM users where username LIKE CONCAT('%',usrname,'%');
    END;
 
+
+   
+   DROP PROCEDURE IF EXISTS test.GetAllCats;
+CREATE PROCEDURE test.`GetAllCats`()
+BEGIN
+   SELECT * FROM category ;
+   END;
+
+DROP PROCEDURE IF EXISTS test.GetCatByID;
+CREATE PROCEDURE test.`GetCatByID`(catid int)
+BEGIN
+   SELECT * FROM category where id = catid;
+   END;
+
+DROP PROCEDURE IF EXISTS test.GetCatByName;
+CREATE PROCEDURE test.`GetCatByName`(catname varchar(20))
+BEGIN
+   SELECT * FROM category where name LIKE CONCAT('%',catname,'%');
+   END;
+
+CREATE TABLE `category` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `descp` varchar(20) DEFAULT NULL,
+  `image` blob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
