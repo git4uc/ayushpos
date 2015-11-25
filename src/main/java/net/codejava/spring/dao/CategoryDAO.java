@@ -4,7 +4,6 @@ package net.codejava.spring.dao;
 import java.util.List;
 
 import net.codejava.spring.model.Category;
-import net.codejava.spring.model.User;
 
 public interface CategoryDAO {
 	public List<Category> list() throws Exception;

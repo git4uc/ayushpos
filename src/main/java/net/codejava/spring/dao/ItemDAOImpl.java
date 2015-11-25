@@ -33,6 +33,7 @@ public class ItemDAOImpl implements ItemDAO {
  
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<Item> getItemByName(String name) throws Exception{
 		//call test.GetItemByID(1) in toad
 		session = sessionFactory.openSession();
@@ -41,7 +42,6 @@ public class ItemDAOImpl implements ItemDAO {
 				"call GetItemByName(:name)")
 				.addEntity(Item.class)
 				.setParameter("name", name);
-						
 			List<Item> result = query.list();
 			for(int i=0; i<result.size(); i++){
 				Item Item = result.get(i);
@@ -57,6 +57,7 @@ public class ItemDAOImpl implements ItemDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Item> list() throws Exception{
 		session = sessionFactory.openSession();
@@ -81,6 +82,7 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Item getItemByID(int id) throws Exception {
 		Session session = sessionFactory.openSession();
@@ -88,8 +90,9 @@ public class ItemDAOImpl implements ItemDAO {
 				"call GetItemByID(:id)")
 				.addEntity(Item.class)
 				.setParameter("id", id);
+			
 			List<Item> result= query.list();
-			if(!(result==null)) return (Item) result.get(0);
+			if((result!=null && result.size()>0)) return (Item) result.get(0);
 		return null;
 	}
 
@@ -155,6 +158,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object getItemByCode(String code) {
 		Session session = sessionFactory.openSession();

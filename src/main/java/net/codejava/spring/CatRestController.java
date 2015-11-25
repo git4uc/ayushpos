@@ -11,10 +11,13 @@ import java.util.List;
 
 
 
+
+
+
+
 import net.codejava.spring.dao.CategoryDAO;
 import net.codejava.spring.dao.CategoryDAO;
 import net.codejava.spring.dao.UserDAO;
-import net.codejava.spring.model.Category;
 import net.codejava.spring.model.Category;
 import net.codejava.spring.service.CatService;
 import net.codejava.spring.service.UserService;
@@ -94,22 +97,23 @@ public class CatRestController {
     }
     
     
-    @RequestMapping(value = "/cat/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createCategory(@RequestBody Category Category,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Category " + Category.getName());
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value = "/cat/", method = RequestMethod.POST)
+    public ResponseEntity<Void> createCategory(@RequestBody Category category,    UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Category " + category.getName());
   
-        if (catService.isCategoryExist(Category)) {
-            System.out.println("A Category with name " + Category.getName() + " already exist");
+        if (catService.isCategoryExist(category)) {
+            System.out.println("A Category with name " + category.getName() + " already exist");
             ErrorResponse errResp = new ErrorResponse(ErrorCode.INVALID_ID);
          //   return new ResponseEntity<Void>(HttpStatus.CONFLICT);
           //  return Response.status(400).entity(resp).build();
             return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
         }
       //Implemeted - Usha
-        catService.saveCategory(Category);
+        catService.saveCategory(category);
   
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/cat/{id}").buildAndExpand(Category.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/cat/{id}").buildAndExpand(category.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
   

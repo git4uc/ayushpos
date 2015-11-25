@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.codejava.spring.model.User;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
@@ -19,9 +20,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<User> listorg() {
-		@SuppressWarnings("unchecked")
+
 		List<User> listUser = (List<User>) sessionFactory.
 		getCurrentSession().
 		createCriteria(User.class).
@@ -33,6 +35,7 @@ public class UserDAOImpl implements UserDAO {
  
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<User> getUserByName(String name) throws Exception{
 		//call test.GetUserByID(1) in toad
 		session = sessionFactory.openSession();
@@ -57,6 +60,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<User> list() throws Exception{
 		session = sessionFactory.openSession();
@@ -81,6 +85,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User getUserByID(int id) throws Exception {
 		Session session = sessionFactory.openSession();
@@ -89,7 +94,7 @@ public class UserDAOImpl implements UserDAO {
 				.addEntity(User.class)
 				.setParameter("id", id);
 			List<User> result= query.list();
-			if(!(result==null)) return (User) result.get(0);
+			if(!(result==null)) return  result.get(0);
 		return null;
 	}
 
@@ -119,7 +124,7 @@ public class UserDAOImpl implements UserDAO {
         session = sessionFactory.openSession();
         try {
             trns = session.beginTransaction();
-            User user = new User(userid, null, null, null);
+            User user = new User(userid, "", "", "",0,"","");
             session.delete(user);
             session.getTransaction().commit();
         } catch (RuntimeException e) {

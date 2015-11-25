@@ -3,21 +3,28 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="net.codejava.spring.model">
-	<class name="User" table="USERS">
+
+		<class name="User" table="USERS">
 		<id name="id" column="USER_ID">
 			<generator class="native"/>
 		</id>
 		<property name="username" column="USERNAME" />
-		<property name="password" column="PASSWORD" />
 		<property name="email" column="EMAIL" />
 		<property name="phone" column="PHONE" />
-		<property name="fax" column="FAX" />
-		<property name="address1" column="ADD1" />
-		<property name="address2" column="ADD2" />
-		<property name="address3" column="ADD3" />
-		<property name="cardno" column="CARDNO" />
-		<property name="cardexpdt" column="CARDEXPDT" />
+		<property name="address" column="ADD1" />
+		<property name="age" column="Age" />
+		<property name="accountid" column="ACCOUNTID" />
 	</class>
+	
+		<class name="Category" table="CATEGORY">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="NAME" />
+		<property name="descp" column="DESCP" />
+		<!--   <property name="image" column="IMAGE" />  -->
+	</class>
+	
 	
 		<class name="Item" table="ITEMS">
 		<id name="id" column="ID">
@@ -28,7 +35,15 @@
 		<property name="price" column="PRICE" />
 		<property name="stock" column="STOCK" />
 		<property name="tax" column="TAX" />
-		
+		<property name="discount" column="DISCOUNT" />
+		<property name="brandname" column="BRANDNAME" />
+		<property name="companyname" column="COMPANYNAME" />
+		<property name="catalogue" column="CATALOG" />
+		<property name="remarks" column="REMARKS" />
+		<property name="updatedby" column="UPDATEDBY" />
+		<property name="updatedone" column="UPDATEDONE" />
+		<property name="discontinued" column="DISCONTINUED" />
+		<property name="reasondiscont" column="REASONDISCONT" />
 	</class>
 
     

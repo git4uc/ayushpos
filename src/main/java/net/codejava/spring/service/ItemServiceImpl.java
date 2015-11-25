@@ -14,12 +14,18 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
+
+
+
 
 
 
@@ -122,18 +128,18 @@ public class ItemServiceImpl implements ItemService{
         
         
         ItemService itmImpl = (ItemService) context.getBean("ItemService");
-        Item item = new Item(23);
+        Item item = new Item(8);
         item.setCode("DDD");
         item.setTax(1);
     	//itmImpl.saveItem(item); 
         
-        Item item1 = itmImpl.findById(1); 
+        Item item1 = itmImpl.findById(7); 
         item1.setName("DLY PODI");
         itmImpl.updateItem(item1);
     	List<Item> Items = itmImpl.findByName("POD"); 
        // List<Item> Items = usrImpl.findAllItems();
     	for(Item itm1 : Items){
-    		System.out.println(itm1.getName());
+    		System.out.println("Item Found " + itm1.getName());
     		//System.out.println(usr1.getPrice());
     	}
     	/**Item.setEmail("New Email update.com");

@@ -13,12 +13,18 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
+
+
+
 
 
 
@@ -68,6 +74,7 @@ public class UserServiceImpl implements UserService{
     
     public void saveUser(User user) {
         user.setId(counter.incrementAndGet());
+        System.out.println("user to string " + user.toString());
         userDao.addUser(user);
     }
  
@@ -108,17 +115,17 @@ public class UserServiceImpl implements UserService{
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
         UserService usrImpl = (UserService) context.getBean("userService");
-        User user = new User(23,"dfgNewUsha_Chacko","fgdfhdhNew","emailNew");
+        User user = new User(25,"dfgNewUsha_Chacko","fgdfhdhNew","emailNew",35,"ACCT_7775","912345667");
     	usrImpl.saveUser(user);
         
         User usr = usrImpl.findById(26); 
-        usr.setCardno("NEWCARD123");
+        usr.setAccountid("NEWCAR_26");
         usrImpl.updateUser(usr);
     	List<User> users = usrImpl.findByName("Adhi"); 
        // List<User> users = usrImpl.findAllUsers();
     	for(User usr1 : users){
     		System.out.println(usr1.getUsername());
-    		System.out.println(usr1.getCardno());
+    		System.out.println(usr1.getAccountid());
     	}
     	/**user.setEmail("New Email update.com");
     	usrImpl.updateUser(user);

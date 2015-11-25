@@ -1,5 +1,6 @@
 package net.codejava.spring.util;
 
+@SuppressWarnings("serial")
 public class PosException  extends Exception {
 
 		  private int errorCode;

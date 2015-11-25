@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import net.codejava.spring.dao.UserDAO;
 import net.codejava.spring.model.User;
 import net.codejava.spring.service.UserService;
@@ -103,18 +104,12 @@ public class UserRestController {
         }
         System.out.println("User with id " + id + "found ");
         currentUser.setUsername(user.getUsername());
-        //password
-        currentUser.setPassword(user.getPassword());
         currentUser.setEmail(user.getEmail());
         currentUser.setPhone(user.getPhone());
         //fax
-        currentUser.setFax(user.getFax());
-        currentUser.setAddress1(user.getAddress1());
-        currentUser.setAddress2(user.getAddress2());
-        currentUser.setAddress3(user.getAddress3());
-        System.out.println("From obj" + user.getCardno());
-        currentUser.setCardno(user.getCardno());
-        currentUser.setCardexpdt(user.getCardexpdt());        
+        currentUser.setAddress(user.getAddress());
+        currentUser.setAge(user.getAge());
+        currentUser.setAccountid(user.getAccountid());        
 
         //Implemented - Usha
         userService.updateUser(currentUser);
@@ -125,7 +120,8 @@ public class UserRestController {
      
     
     //------------------- Delete a User --------------------------------------------------------
-    //Implemented
+   
+	//Implemented
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<User> deleteUser(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting User with id " + id);

@@ -3,12 +3,16 @@ package net.codejava.spring.dao;
 import java.util.Iterator;
 import java.util.List;
 
+
+
+
+
+
+
+
+
 import net.codejava.spring.model.Category;
 
-
-import net.codejava.spring.model.User;
-
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Query;
@@ -22,10 +26,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-	
-
-	
-	
+	@SuppressWarnings("unchecked")
 	public List<Category> getCategoryByName(String name) throws Exception{
 		session = sessionFactory.openSession();
 		try{
@@ -50,6 +51,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Category> list() throws Exception{
 		session = sessionFactory.openSession();
@@ -138,6 +140,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Category getCategoryByID(int id) throws Exception {
 			session = sessionFactory.openSession();
