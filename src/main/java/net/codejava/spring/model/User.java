@@ -13,6 +13,7 @@ public class User {
     private String username;
     
     private String phone;
+    private String fax;
      
     private String address;
      
@@ -121,6 +122,14 @@ public class User {
         return "User [id=" + id + ", username=" + username + ", address=" + address
                 + ", email=" + email + ", age=" + age + " accountid=" + accountid + " phone'" + phone + "]";
     }
+
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
      
  
 }

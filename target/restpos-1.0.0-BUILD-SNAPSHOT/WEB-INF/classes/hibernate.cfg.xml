@@ -6,7 +6,9 @@
   <session-factory>
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="show_sql">true</property>  
-    <mapping resource="User.hbm.xml"/>
-
+    <mapping resource="All.hbm.xml"/>
+       <mapping class="com.usha.Stock" />
+    <mapping class="com.usha.StockDailyRecord" />
+    
   </session-factory>
 </hibernate-configuration>

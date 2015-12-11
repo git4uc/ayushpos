@@ -106,7 +106,7 @@ public class UserRestController {
         currentUser.setUsername(user.getUsername());
         currentUser.setEmail(user.getEmail());
         currentUser.setPhone(user.getPhone());
-        //fax
+        currentUser.setFax(user.getFax());
         currentUser.setAddress(user.getAddress());
         currentUser.setAge(user.getAge());
         currentUser.setAccountid(user.getAccountid());        

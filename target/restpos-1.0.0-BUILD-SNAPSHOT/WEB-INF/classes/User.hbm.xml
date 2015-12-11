@@ -11,131 +11,13 @@
 		<property name="username" column="USERNAME" />
 		<property name="email" column="EMAIL" />
 		<property name="phone" column="PHONE" />
+		<property name="fax" column="FAX" />
 		<property name="address" column="ADD1" />
 		<property name="age" column="Age" />
 		<property name="accountid" column="ACCOUNTID" />
 	</class>
 	
-		<class name="Category" table="CATEGORY">
-		<id name="id" column="ID">
-			<generator class="native"/>
-		</id>
-		<property name="name" column="NAME" />
-		<property name="descp" column="DESCP" />
-		<!--   <property name="image" column="IMAGE" />  -->
-	</class>
-	
-	
-		<class name="Item" table="ITEMS">
-		<id name="id" column="ID">
-			<generator class="native"/>
-		</id>
-		<property name="code" column="CODE" />
-		<property name="name" column="NAME" />
-		<property name="price" column="PRICE" />
-		<property name="stock" column="STOCK" />
-		<property name="tax" column="TAX" />
-		<property name="discount" column="DISCOUNT" />
-		<property name="brandname" column="BRANDNAME" />
-		<property name="companyname" column="COMPANYNAME" />
-		<property name="catalogue" column="CATALOG" />
-		<property name="remarks" column="REMARKS" />
-		<property name="updatedby" column="UPDATEDBY" />
-		<property name="updatedone" column="UPDATEDONE" />
-		<property name="discontinued" column="DISCONTINUED" />
-		<property name="reasondiscont" column="REASONDISCONT" />
-	</class>
 
-    
-    <sql-query name="callUserByID_SP">
-	<return alias="user" class="net.codejava.spring.model.User"/>
-	<![CDATA[CALL GetStocks(:userid)]]>
-    </sql-query>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.codejava.spring.model">
+
+
+	
+		<class name="Category" table="CATEGORY">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="NAME" />
+		<property name="descp" column="DESCP" />
+		<!--   <property name="image" column="IMAGE" />  -->
+		<set name="items" table="items" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID" not-null="true" />
+            </key>
+            <one-to-many class="net.codejava.spring.model.item" />
+        </set>
+	</class>
+	
+	
+		<class name="Item" table="ITEMS">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="name" column="NAME" />
+		<property name="price" column="PRICE" />
+		<property name="stock" column="STOCK" />
+		<property name="tax" column="TAX" />
+		<property name="discount" column="DISCOUNT" />
+		<property name="brandname" column="BRANDNAME" />
+		<property name="companyname" column="COMPANYNAME" />
+		<property name="catalogue" column="CATALOG" />
+		<property name="remarks" column="REMARKS" />
+		<property name="updatedby" column="UPDATEDBY" />
+		<property name="updatedone" column="UPDATEDONE" />
+		<property name="discontinued" column="DISCONTINUED" />
+		<property name="reasondiscont" column="REASONDISCONT" />
+		<many-to-one name="category" class="net.codejava.spring.model.category" fetch="select">
+            <column name="CATEGORYID" not-null="true" />
+        </many-to-one>
+		
+		
+	</class>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</hibernate-mapping>

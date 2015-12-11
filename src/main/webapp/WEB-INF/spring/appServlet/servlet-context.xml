@@ -82,5 +82,9 @@
 	<bean id="catService" class="net.codejava.spring.service.CatServiceImpl">
 	</bean> 
 	   	
-	   	
+	<bean id="stockDoa" class="net.codejava.spring.dao.StockDAOImpl">
+		    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
 </beans>
