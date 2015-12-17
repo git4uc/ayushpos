@@ -12,5 +12,6 @@ public interface ItemDAO {
     public List<Item> getItemByName(String name) throws Exception;
     public Item getItemByID(int id) throws Exception;
 	public Object getItemByCode(String code);
+	public List<Item> getItemByCatname(String catname);
 	
 }

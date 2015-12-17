@@ -5,35 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
- 
-
-
-
-
-
-
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
-
-
-
-
-
-
-
-
-
-
-
 import net.codejava.spring.dao.ItemDAO;
 import net.codejava.spring.model.Item;
  
@@ -74,6 +51,17 @@ public class ItemServiceImpl implements ItemService{
     }
      
     
+  public List<Item> findByCatName(String catname) {
+        
+    	try {
+			return ItemDao.getItemByCatname(catname);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
+  
     public void saveItem(Item Item) {
         Item.setId(counter.incrementAndGet());
         ItemDao.addItem(Item);
@@ -115,10 +103,6 @@ public class ItemServiceImpl implements ItemService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-/**        Items.add(new Item(counter.incrementAndGet(),"Sam", "NY", "sam@abc.com",35,434223,"415-241-2404"));
-        Items.add(new Item(counter.incrementAndGet(),"Tomy", "ALBAMA", "tomy@abc.com",26,34324234,"415-241-2404"));
-        Items.add(new Item(counter.incrementAndGet(),"Kelly", "NEBRASKA", "kelly@abc.com",28,23423423,"415-241-2404"));
- **/       
         return listItems;
     }
  
@@ -128,16 +112,17 @@ public class ItemServiceImpl implements ItemService{
         
         
         ItemService itmImpl = (ItemService) context.getBean("ItemService");
-        Item item = new Item(8);
+     /**   Item item = new Item(8);
         item.setCode("DDD");
         item.setTax(1);
-    	//itmImpl.saveItem(item); 
+    	//itmImpl.saveItem(item); **/
         
-        Item item1 = itmImpl.findById(7); 
+    /**    Item item1 = itmImpl.findById(7); 
         item1.setName("DLY PODI");
         itmImpl.updateItem(item1);
-    	List<Item> Items = itmImpl.findByName("POD"); 
+    	List<Item> Items = itmImpl.findByName("POD"); **/
        // List<Item> Items = usrImpl.findAllItems();
+        List<Item> Items = itmImpl.findByCatName("breakfast");
     	for(Item itm1 : Items){
     		System.out.println("Item Found " + itm1.getName());
     		//System.out.println(usr1.getPrice());

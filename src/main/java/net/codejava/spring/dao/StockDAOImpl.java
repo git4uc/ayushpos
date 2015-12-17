@@ -40,8 +40,9 @@ public class StockDAOImpl  {
         	session.beginTransaction();
 
         	Stock stock = new Stock();
-                stock.setStockCode("7052");
-                stock.setStockName("PADINI");
+        	 stock.setStockId(2);
+                stock.setStockCode("7053");
+                stock.setStockName("CSCO");
                 session.save(stock);
                 
                 StockDailyRecord stockDailyRecords = new StockDailyRecord();

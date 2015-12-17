@@ -81,10 +81,27 @@
 	
 	<bean id="catService" class="net.codejava.spring.service.CatServiceImpl">
 	</bean> 
+
+<bean id="salesOrderService" class="net.codejava.spring.service.SalesOrderServiceImpl">
+	</bean>
 	   	
-	<bean id="stockDoa" class="com.usha.StockDAOImpl">
+	<bean id="stockDoa" class="net.codejava.spring.dao.StockDAOImpl">
 		    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
 	</bean> 
+	
+	
+	 	<bean id="orderDoa" class="net.codejava.spring.dao.OrderDAOImpl">
+		    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
+		 	<bean id="salesorderDoa" class="net.codejava.spring.dao.SalesOrderDAOImpl">
+		    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
 </beans>

@@ -112,3 +112,5 @@ CREATE TABLE `category` (
   `image` blob,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+

@@ -172,6 +172,19 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 
+	@Override
+	public List<Item> getItemByCatname(String catname) {
+		Session session = sessionFactory.openSession();
+		Query query = session.createSQLQuery(
+				"call GetItemByCatname(:name)")
+				.addEntity(Item.class)
+				.setParameter("name", catname);
+			List<Item> result= query.list();
+			if(!(result==null)) return (result);
+		return null;
+	}
+
+
 
 
     

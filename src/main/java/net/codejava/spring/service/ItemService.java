@@ -21,5 +21,7 @@ public interface ItemService {
     void deleteAllItems();
      
     public boolean isItemExist(Item Item);
+
+	List<Item> findByCatName(String string);
      
 }

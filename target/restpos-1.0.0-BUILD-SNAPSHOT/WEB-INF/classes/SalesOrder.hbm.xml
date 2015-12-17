@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="net.codejava.spring.model">
+   <class name="SalesOrder" table="ORDERHEADER">
+      <meta attribute="class-description">
+         This class contains the order header detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <bag name="OrderDetails" cascade="all">
+         <key column="order_id"/>
+         <one-to-many class="OrderDetail"/>
+      </bag>
+      <property name="OrderNumber" column="ordernumber" type="string"/>
+   </class>
+
+   <class name="OrderDetail" table="ORDERDETAIL">
+      <meta attribute="class-description">
+         This class contains the order detail records. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="itemid" column="Item_id" type="int"/>
+      <property name="qty" column="qty" type="int"/>
+      <property name="price" column="price" type="double"/>
+   </class>
+
+</hibernate-mapping>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

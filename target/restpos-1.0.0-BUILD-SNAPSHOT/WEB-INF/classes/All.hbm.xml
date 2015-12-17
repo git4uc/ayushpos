@@ -45,9 +45,10 @@
 		<property name="updatedone" column="UPDATEDONE" />
 		<property name="discontinued" column="DISCONTINUED" />
 		<property name="reasondiscont" column="REASONDISCONT" />
+		<property name="category" column="CATEGORY" />
 	</class>
 
-    
+   
     <sql-query name="callUserByID_SP">
 	<return alias="user" class="net.codejava.spring.model.User"/>
 	<![CDATA[CALL GetStocks(:userid)]]>
