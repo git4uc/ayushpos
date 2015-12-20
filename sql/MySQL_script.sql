@@ -114,3 +114,55 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(15) DEFAULT NULL,
+  `name` varchar(15) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `saleprice` double DEFAULT NULL,
+  `tax` mediumtext,
+  `discount` mediumtext,
+  `brandname` varchar(15) DEFAULT NULL,
+  `catalog` varchar(15) DEFAULT NULL,
+  `remarks` varchar(15) DEFAULT NULL,
+  `updatedby` varchar(15) DEFAULT NULL,
+  `updatedone` varchar(15) DEFAULT NULL,
+  `discontinued` varchar(15) DEFAULT NULL,
+  `reasondiscont` varchar(15) DEFAULT NULL,
+  `image` blob,
+  `companyname` varchar(20) DEFAULT NULL,
+  `category` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_categoryid` (`category`),
+  CONSTRAINT `fk_categoryid` FOREIGN KEY (`category`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `orderdetail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `orderheader` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordernumber` varchar(20) DEFAULT NULL,
+  `orderdate` datetime DEFAULT NULL,
+  `totdiscount` float DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
+
+DROP PROCEDURE IF EXISTS test.GetItemByCatname;
+CREATE PROCEDURE test.`GetItemByCatname`(catname varchar(20))
+BEGIN
+   SELECT * FROM items,category where items.category = category.id and category.name LIKE CONCAT('%',catname,'%');
+   END;
+
