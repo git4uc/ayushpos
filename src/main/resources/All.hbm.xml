@@ -45,7 +45,9 @@
 		<property name="updatedone" column="UPDATEDONE" />
 		<property name="discontinued" column="DISCONTINUED" />
 		<property name="reasondiscont" column="REASONDISCONT" />
-		<property name="category" column="CATEGORY" />
+
+              <many-to-one name="category" column="categoryid" 
+       class="net.codejava.spring.model.Category" fetch="join" lazy="false" cascade="all"/>
 	</class>
 
    

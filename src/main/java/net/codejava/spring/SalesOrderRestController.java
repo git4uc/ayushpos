@@ -110,7 +110,6 @@ public class SalesOrderRestController {
         }
       //Implemeted - Usha
         SalesOrderService.saveSalesOrder(SalesOrder);
-  
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/SalesOrder/{id}").buildAndExpand(SalesOrder.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);

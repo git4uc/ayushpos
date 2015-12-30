@@ -5,13 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
+
 import net.codejava.spring.dao.ItemDAO;
+import net.codejava.spring.model.Category;
 import net.codejava.spring.model.Item;
  
 @Service("ItemService")
@@ -112,19 +115,24 @@ public class ItemServiceImpl implements ItemService{
         
         
         ItemService itmImpl = (ItemService) context.getBean("ItemService");
-     /**   Item item = new Item(8);
-        item.setCode("DDD");
+       Item item = new Item(8);
+        item.setCode("NEWS");
         item.setTax(1);
-    	//itmImpl.saveItem(item); **/
+        Category cat = new Category(1);
+        cat.setId(1);
+        cat.setName("DDD");
+        item.setCategory(cat);
+    	itmImpl.saveItem(item); 
         
     /**    Item item1 = itmImpl.findById(7); 
         item1.setName("DLY PODI");
-        itmImpl.updateItem(item1);
-    	List<Item> Items = itmImpl.findByName("POD"); **/
+        itmImpl.updateItem(item1); **/
+    	List<Item> Items = itmImpl.findByName("POD"); 
        // List<Item> Items = usrImpl.findAllItems();
-        List<Item> Items = itmImpl.findByCatName("breakfast");
+      //  List<Item> Items = itmImpl.findByCatName("breakfast");
     	for(Item itm1 : Items){
     		System.out.println("Item Found " + itm1.getName());
+    		System.out.println("Cat Found " + itm1.getCategory().getName());
     		//System.out.println(usr1.getPrice());
     	}
     	/**Item.setEmail("New Email update.com");

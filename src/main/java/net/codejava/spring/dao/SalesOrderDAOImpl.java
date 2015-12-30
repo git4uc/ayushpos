@@ -36,6 +36,10 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
      try{
         tx = session.beginTransaction();
         SalesOrder salesOrder = new SalesOrder(orderno);
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
+        salesOrder.setOrderDate(orddt);
+
         salesOrder.setOrderDetails(details);
         SalesOrderID = (Integer) session.save(salesOrder); 
         tx.commit();
@@ -55,6 +59,9 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
      Integer SalesOrderID = null;
      try{
         tx = session.beginTransaction();
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
+        so.setOrderDate(orddt);
         SalesOrderID = (Integer) session.save(so); 
         tx.commit();
      }catch (HibernateException e) {

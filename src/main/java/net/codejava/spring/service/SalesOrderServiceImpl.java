@@ -1,6 +1,7 @@
 package net.codejava.spring.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
+
 
 
 
@@ -55,6 +57,10 @@ public class SalesOrderServiceImpl implements SalesOrderService{
     
     public Integer saveSalesOrder(SalesOrder SalesOrder) {
         SalesOrder.setId(counter.incrementAndGet());
+            Calendar calendar = Calendar.getInstance();
+             java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
+             SalesOrder.setOrderDate(orddt);
+
         return salesorderDoa.addSalesOrder(SalesOrder);
     }
  
@@ -113,7 +119,11 @@ public class SalesOrderServiceImpl implements SalesOrderService{
         SalesOrderService soImpl = (SalesOrderService) context.getBean("SalesOrderService");
  
         SalesOrder so1 = new SalesOrder();
-        so1.setOrderNumber("ON111_NEWREAL");
+        so1.setOrderNumber("DT11");
+        so1.setTotDis(10);
+    //    Calendar calendar = Calendar.getInstance();
+   //     java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
+   //     so1.setOrderDate(orddt);
         so1.setOrderDetails((List<OrderDetail>) set1);
         Integer soID1 = soImpl.saveSalesOrder(so1);
         /* List  */

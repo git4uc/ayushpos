@@ -16,7 +16,7 @@ public class Item {
 	private String updatedone;
 	private boolean discontinued;
 	private String reasondiscont;
-	private String category;
+	private Category category;
 	//private String image;
 	
 	public Item() {
@@ -174,13 +174,13 @@ public class Item {
 		this.reasondiscont = reasondiscont;
 	}
 
-
-	public String getCategory() {
+	
+	public Category getCategory() {
 		return category;
 	}
 
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 }

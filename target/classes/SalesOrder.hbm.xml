@@ -16,6 +16,9 @@
          <one-to-many class="OrderDetail"/>
       </bag>
       <property name="OrderNumber" column="ordernumber" type="string"/>
+      <property name="OrderDate" column="orderdate" type="date"/>
+      <property name="TotDis" column="totdiscount" type="int"/>
+      
    </class>
 
    <class name="OrderDetail" table="ORDERDETAIL">
