@@ -11,6 +11,7 @@ import java.util.*;
 	   private String notes;
 	   private int itemId;
 	   private int supId;
+	   private double totAmt;
 	   
 	   //private Set orderdetails;
 
@@ -81,6 +82,12 @@ import java.util.*;
 	}
 	public void setSupId(int supId) {
 		this.supId = supId;
+	}
+	public double getTotAmt() {
+		return totAmt;
+	}
+	public void setTotAmt(double totAmt) {
+		this.totAmt = totAmt;
 	}
 		
 

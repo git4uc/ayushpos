@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping package="net.codejava.spring.model">
-   <class name="SalesOrder" table="ORDERHEADER">
+   <class name="SalesOrder" table="orderheader">
       <meta attribute="class-description">
          This class contains the order header detail. 
       </meta>
@@ -21,7 +21,7 @@
       
    </class>
 
-   <class name="OrderDetail" table="ORDERDETAIL">
+   <class name="OrderDetail" table="orderdetail">
       <meta attribute="class-description">
          This class contains the order detail records. 
       </meta>
@@ -47,6 +47,7 @@
       <property name="orderNumber" column="ordernumber" type="string"/>
       <property name="orderDt" column="orderdate" type="date"/>
        <property name="deliveryDt" column="deliverydate" type="date"/>
+       <property name="notes" column="notes" type="String"/>
    </class>
    
 

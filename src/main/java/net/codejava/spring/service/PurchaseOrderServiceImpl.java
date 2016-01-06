@@ -115,7 +115,10 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
         PurchaseOrderService soImpl = (PurchaseOrderService) context.getBean("purchaseOrderService");
  
         PurchaseOrder so1 = new PurchaseOrder();
-        so1.setOrderNumber("DT11");
+
+        so1.setOrderNumber("IT_NEWREAL");
+        so1.setNotes("Notes");
+        so1.setTotAmt(23888.45);
     //    Calendar calendar = Calendar.getInstance();
    //     java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
    //     so1.setOrderDate(orddt);
@@ -131,7 +134,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
  	
        //
   
-        
+        String  pono = soImpl.findById(1).getOrderNumber();
+        System.out.println(pono);
     	System.exit(0);
     }
 
@@ -140,7 +144,10 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 	      ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
 
         PurchaseOrderService soImpl = (PurchaseOrderService) context.getBean("PurchaseOrderService");
-
+        PurchaseOrder so1 = new PurchaseOrder();
+        so1.setOrderNumber("IT_NEWREAL");
+        so1.setNotes("Notes");
+        Integer soID1 = soImpl.savePurchaseOrder(so1);
         // List by Order Number
          PurchaseOrder so11 = soImpl.findByOrderNo("ON111UPDATE").iterator().next();
      }
@@ -153,7 +160,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
         PurchaseOrderService soImpl = (PurchaseOrderService) context.getBean("PurchaseOrderService");
  
         PurchaseOrder so1 = new PurchaseOrder();
-        so1.setOrderNumber("ON111_NEWREAL");
+        so1.setOrderNumber("NT_NEWREAL");
+        so1.setNotes("Notes");
         Integer soID1 = soImpl.savePurchaseOrder(so1);
         /* List  */
         soImpl.findAllPurchaseOrders();

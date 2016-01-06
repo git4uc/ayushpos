@@ -191,8 +191,20 @@ public void deletePurchaseOrder(int id) {
 
 
 @Override
-public List<PurchaseOrder> getPurchaseOrderByID(int soid) throws Exception {
-	// TODO Auto-generated method stub
+public PurchaseOrder getPurchaseOrderByID(int poid) throws Exception {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    try{
+
+    	PurchaseOrder purchaseorders = (PurchaseOrder) session.createQuery("FROM PurchaseOrder where id = '"+poid+"'").list().iterator().next(); 		
+
+       return purchaseorders;
+}catch (HibernateException e) {
+    if (tx!=null) tx.rollback();
+    e.printStackTrace(); 
+ }finally {
+    session.close(); 
+ }
 	return null;
 }
 

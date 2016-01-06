@@ -11,7 +11,7 @@ public interface PurchaseOrderDAO {
 	public Integer addPurchaseOrder(String orderno, List details);
 	public Integer addPurchaseOrder(PurchaseOrder purchaseOrder);	
     public void deletePurchaseOrder(int id);
-    public List<PurchaseOrder> getPurchaseOrderByID(int soid) throws Exception;
+    public PurchaseOrder getPurchaseOrderByID(int soid) throws Exception;
  	public List<PurchaseOrder> getOrderByOrderNo(String orderno);
 	public List<PurchaseOrder> listPurchaseOrders() throws Exception;
 
