@@ -60,8 +60,10 @@ public class ItemDAOImpl implements ItemDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Item> list() throws Exception{
+		System.out.println("List : Item method");
 		session = sessionFactory.openSession();
 		try{
+			System.out.println("Calling get all items");
 	    	            Query q = session.createSQLQuery(
 	    				"call GetAllItems()")
 	    				.addEntity(Item.class)

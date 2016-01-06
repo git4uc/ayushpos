@@ -54,7 +54,7 @@ public class CatServiceImpl implements CatService{
      
     
     public void saveCategory(Category Category) {
-        Category.setId(counter.incrementAndGet());
+       // Category.setId(counter.incrementAndGet());
         CategoryDao.addCategory(Category);
     }
  
@@ -100,13 +100,13 @@ public class CatServiceImpl implements CatService{
         
         CatService itmImpl = (CatService) context.getBean("catService");
         Category Category = new Category(23);
-        Category.setName("HotChips");
-        Category.setDescp("Hot Chipsmjj  jjj P");
+        Category.setName("REALNEWE");
+        Category.setDescp("Snacks Hot");
         if(!itmImpl.isCategoryExist(Category))
     	      itmImpl.saveCategory(Category); 
         else
         	System.out.println("Category already exists");
-        Category category1 = itmImpl.findById(1); 
+        Category category1 = itmImpl.findById(15); //1
         category1.setName("DLY PODI");
         itmImpl.updateCategory(category1);
     	List<Category> categorys1 = itmImpl.findByName("POD"); 

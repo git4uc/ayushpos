@@ -32,6 +32,23 @@
       <property name="qty" column="qty" type="int"/>
       <property name="price" column="price" type="double"/>
    </class>
+   
+     <class name="PurchaseOrder" table="purchaseorder">
+      <meta attribute="class-description">
+         This class contains the order detail records. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="itemId" column="itemid" type="int"/>
+      <property name="supId" column="supplierid" type="int"/>
+      <property name="qty" column="qty" type="int"/>
+      <property name="rate" column="rate" type="double"/>
+      <property name="orderNumber" column="ordernumber" type="string"/>
+      <property name="orderDt" column="orderdate" type="date"/>
+       <property name="deliveryDt" column="deliverydate" type="date"/>
+   </class>
+   
 
 </hibernate-mapping>
     

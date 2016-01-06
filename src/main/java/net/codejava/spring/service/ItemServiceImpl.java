@@ -66,7 +66,7 @@ public class ItemServiceImpl implements ItemService{
     }
   
     public void saveItem(Item Item) {
-        Item.setId(counter.incrementAndGet());
+      //  Item.setId(counter.incrementAndGet()); use the DB auto increament
         ItemDao.addItem(Item);
     }
  
@@ -115,20 +115,21 @@ public class ItemServiceImpl implements ItemService{
         
         
         ItemService itmImpl = (ItemService) context.getBean("ItemService");
-       Item item = new Item(8);
-        item.setCode("NEWS");
+        
+      Item item = new Item(8);
+        item.setCode("ITEMNEW");
         item.setTax(1);
         Category cat = new Category(1);
-        cat.setId(1);
-        cat.setName("DDD");
+       // cat.setId(1);
+        cat.setName("NDDD");
         item.setCategory(cat);
     	itmImpl.saveItem(item); 
         
-    /**    Item item1 = itmImpl.findById(7); 
+        Item item1 = itmImpl.findById(7); 
         item1.setName("DLY PODI");
-        itmImpl.updateItem(item1); **/
-    	List<Item> Items = itmImpl.findByName("POD"); 
-       // List<Item> Items = usrImpl.findAllItems();
+        itmImpl.updateItem(item1); 
+    //	List<Item> Items = itmImpl.findByName("POD"); 
+        List<Item> Items = itmImpl.findAllItems();
       //  List<Item> Items = itmImpl.findByCatName("breakfast");
     	for(Item itm1 : Items){
     		System.out.println("Item Found " + itm1.getName());

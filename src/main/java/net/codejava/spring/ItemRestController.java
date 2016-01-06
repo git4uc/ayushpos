@@ -45,15 +45,22 @@ public class ItemRestController {
 	@RequestMapping(value = "/item/", method = RequestMethod.GET)
     public ResponseEntity <List<Item>> listAllItems() throws Exception {
     	System.out.println("Testing testing /cagepos/Item Y - 11/14");
+    	List<Item> Items;
+    	try{
     	//Implemeted - Usha
     
-       List<Item> Items = itemService.findAllItems();
+        Items = itemService.findAllItems();
         if(Items.isEmpty()){
             return new ResponseEntity<List<Item>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
 		for(int i=0; i<Items.size(); i++){
 			Item Item = (Item)Items.get(i);
 			System.out.println(Item.getName());
+		}
+    	}
+		catch(Exception e){
+			
+			return new ResponseEntity(HttpStatus.METHOD_FAILURE);
 		}
         return new ResponseEntity<List<Item>>(Items, HttpStatus.OK);
     }

@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="net.codejava.spring.model">
 
-		<class name="User" table="USERS">
+		<class name="User" table="users">
 		<id name="id" column="USER_ID">
 			<generator class="native"/>
 		</id>
@@ -17,7 +17,7 @@
 		<property name="accountid" column="ACCOUNTID" />
 	</class>
 	
-		<class name="Category" table="CATEGORY">
+		<class name="Category" table="category">
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
@@ -26,8 +26,15 @@
 		<!--   <property name="image" column="IMAGE" />  -->
 	</class>
 	
+			<class name="Supplier" table="supplier">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="NAME" />
+		<property name="descp" column="DESCP" />
+	</class>
 	
-		<class name="Item" table="ITEMS">
+		<class name="Item" table="items">
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>

@@ -38,7 +38,8 @@
 	
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+     <!--     <property name="url" value="jdbc:mysql://localhost:3306/test"/> -->
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/usersdb"/> 
         <property name="username" value="root"/>
         <property name="password" value="pwd"/>
     </bean>	
@@ -81,9 +82,17 @@
 	
 	<bean id="catService" class="net.codejava.spring.service.CatServiceImpl">
 	</bean> 
+	
+		<bean id="supService" class="net.codejava.spring.service.SupServiceImpl">
+	</bean> 
 
-<bean id="salesOrderService" class="net.codejava.spring.service.SalesOrderServiceImpl">
-	</bean>
+			<bean id="supplierDao" class="net.codejava.spring.dao.SupplierDAOImpl">
+	    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
+
 	   	
 	<bean id="stockDoa" class="net.codejava.spring.dao.StockDAOImpl">
 		    <constructor-arg>
@@ -98,10 +107,22 @@
 	    </constructor-arg>
 	</bean> 
 	
+	<bean id="salesOrderService" class="net.codejava.spring.service.SalesOrderServiceImpl">
+	</bean>
+	
 		 	<bean id="salesorderDoa" class="net.codejava.spring.dao.SalesOrderDAOImpl">
 		    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
 	</bean> 
+	
+		<bean id="purchaseOrderService" class="net.codejava.spring.service.PurchaseOrderServiceImpl">
+	</bean>
+	
+		 	<bean id="purchaseorderDoa" class="net.codejava.spring.dao.PurchaseOrderDAOImpl">
+		    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean>
 	
 </beans>

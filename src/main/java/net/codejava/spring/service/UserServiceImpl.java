@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService{
      
     
     public void saveUser(User user) {
-        user.setId(counter.incrementAndGet());
+       // user.setId(counter.incrementAndGet());
         System.out.println("user to string " + user.toString());
         userDao.addUser(user);
     }
@@ -113,16 +113,18 @@ public class UserServiceImpl implements UserService{
  
    // @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/applicationContext.xml"})
     public static void main(String[] args){
+    	
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
         UserService usrImpl = (UserService) context.getBean("userService");
-        User user = new User(25,"dfgNewUsha_Chacko","fgdfhdhNew","emailNew",35,"ACCT_7775","912345667");
+        User user = new User();
+        user.setUsername("Adhvaidh");
     	usrImpl.saveUser(user);
         
         User usr = usrImpl.findById(26); 
         usr.setAccountid("NEWCAR_26");
         usrImpl.updateUser(usr);
     	List<User> users = usrImpl.findByName("Adhi"); 
-       // List<User> users = usrImpl.findAllUsers();
+        users = usrImpl.findAllUsers();
     	for(User usr1 : users){
     		System.out.println(usr1.getUsername());
     		System.out.println(usr1.getAccountid());
