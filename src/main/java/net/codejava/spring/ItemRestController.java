@@ -102,8 +102,6 @@ public class ItemRestController {
         if (itemService.isItemExist(Item)) {
             System.out.println("A Item with name " + Item.getName() + " already exist");
             ErrorResponse errResp = new ErrorResponse(ErrorCode.INVALID_ID);
-         //   return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-          //  return Response.status(400).entity(resp).build();
             return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
         }
       //Implemeted - Usha
@@ -119,7 +117,7 @@ public class ItemRestController {
     //------------------- Update a Item --------------------------------------------------------
       
     @RequestMapping(value = "/item/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Item> updateItem(@PathVariable("id") int id, @RequestBody Item Item) {
+    public ResponseEntity<Item> updateItem(@PathVariable("id") int id, @RequestBody Item item) {
         System.out.println("Updating Item " + id);
           
         Item currentItem = itemService.findById(id);
@@ -129,22 +127,9 @@ public class ItemRestController {
             return new ResponseEntity<Item>(HttpStatus.BAD_REQUEST);
         }
         System.out.println("Item with id " + id + "  found ");
-        currentItem.setName(Item.getName());
-        currentItem.setBrandname(Item.getBrandname());
-        currentItem.setCatalogue((Item.getCatalogue()));
-        currentItem.setCode(Item.getCode());
-        currentItem.setDiscontinued(Item.isDiscontinued());
-        currentItem.setCompanyname(Item.getCompanyname());
-        currentItem.setDiscount(Item.getDiscount());
-        currentItem.setPrice(Item.getPrice());
-        currentItem.setReasondiscont(Item.getReasondiscont());
-        currentItem.setRemarks(Item.getRemarks());
-        currentItem.setStock(Item.getStock());
-        currentItem.setTax(Item.getTax());
-        currentItem.setUpdatedby(Item.getUpdatedby());
-        currentItem.setUpdatedone(Item.getUpdatedone());
         //Implemented - Usha
-        itemService.updateItem(currentItem);
+        item.setId(currentItem.getId());
+        itemService.updateItem(item);
         
         return new ResponseEntity<Item>(currentItem, HttpStatus.OK);
     }

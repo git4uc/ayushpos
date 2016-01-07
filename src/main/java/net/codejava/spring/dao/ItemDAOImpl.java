@@ -169,7 +169,7 @@ public class ItemDAOImpl implements ItemDAO {
 				.addEntity(Item.class)
 				.setParameter("code", code);
 			List<Item> result= query.list();
-			if(!(result==null)) return (Item) result.get(0);
+			if(!(result==null)|| result.iterator().hasNext()) return (Item) result.get(0);
 		return null;
 	}
 

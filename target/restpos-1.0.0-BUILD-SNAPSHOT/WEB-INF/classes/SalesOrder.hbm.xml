@@ -47,7 +47,8 @@
       <property name="orderNumber" column="ordernumber" type="string"/>
       <property name="orderDt" column="orderdate" type="date"/>
        <property name="deliveryDt" column="deliverydate" type="date"/>
-       <property name="notes" column="notes" type="String"/>
+       <property name="notes" column="notes" type="string"/>
+        <property name="totAmt" column="totalamt" type="double"/>
    </class>
    
 

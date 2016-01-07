@@ -117,12 +117,12 @@ public class ItemServiceImpl implements ItemService{
         ItemService itmImpl = (ItemService) context.getBean("ItemService");
         
       Item item = new Item(8);
-        item.setCode("ITEMNEW");
+        item.setCode("ITEMN11");
         item.setTax(1);
-        Category cat = new Category(1);
+    //    Category cat = new Category(1);
        // cat.setId(1);
-        cat.setName("NDDD");
-        item.setCategory(cat);
+   //     cat.setName("NDDD");
+ //       item.setCategory(cat);
     	itmImpl.saveItem(item); 
         
         Item item1 = itmImpl.findById(7); 
