@@ -103,18 +103,10 @@ public class UserRestController {
             return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
         }
         System.out.println("User with id " + id + "found ");
-        currentUser.setUsername(user.getUsername());
-        currentUser.setEmail(user.getEmail());
-        currentUser.setPhone(user.getPhone());
-        currentUser.setFax(user.getFax());
-        currentUser.setAddress(user.getAddress());
-        currentUser.setAge(user.getAge());
-        currentUser.setAccountid(user.getAccountid());        
-
+        user.setId(user.getId());
         //Implemented - Usha
-        userService.updateUser(currentUser);
-        
-        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+        userService.updateUser(user);      
+        return new ResponseEntity<User>(userService.findById(id), HttpStatus.OK);
     }
   
      

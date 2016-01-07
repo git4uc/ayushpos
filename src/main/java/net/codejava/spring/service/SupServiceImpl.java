@@ -100,8 +100,13 @@ public class SupServiceImpl implements SupService{
         
         SupService itmImpl = (SupService) context.getBean("supService");
         Supplier Supplier = new Supplier(23);
-        Supplier.setName("AmmasKitchen");
+        Supplier.setName("MEmE");
         Supplier.setDescp("SecondSupplier");
+        Supplier.setAddress1("ADDSecondSupplier");
+        Supplier.setAddress2("ADD2SecondSupplier");
+        Supplier.setAddress3("ADD3SecondSupplier");
+        Supplier.setPhone2("Phone2SecondSupplier");
+        Supplier.setPhone("PhSecondSupplier");
         if(!itmImpl.isSupplierExist(Supplier))
     	      itmImpl.saveSupplier(Supplier); 
         else

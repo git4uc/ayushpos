@@ -200,8 +200,24 @@ public void deleteSalesOrder(int id) {
 
 
 @Override
-public List<SalesOrder> getSalesOrderByID(int soid) throws Exception {
-	// TODO Auto-generated method stub
+public SalesOrder getSalesOrderByID(int soid) throws Exception {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    try{
+	/**Query query = session.createSQLQuery(
+			"call GetSOByOrderNO(:orderno)")
+			.addEntity(Item.class)
+			.setParameter("orderno", orderno);
+			List<SalesOrder> salesorders = query.list(); **/
+    SalesOrder salesorders = (SalesOrder) session.createQuery("FROM SalesOrder where id = '"+soid+"'").list().iterator().next(); 
+		
+      return salesorders;
+}catch (HibernateException e) {
+    if (tx!=null) tx.rollback();
+    e.printStackTrace(); 
+ }finally {
+    session.close(); 
+ }
 	return null;
 }
 

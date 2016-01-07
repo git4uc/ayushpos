@@ -124,7 +124,7 @@ public class SupRestController {
     //------------------- Update a Supplier --------------------------------------------------------
       
     @RequestMapping(value = "/sup/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Supplier> updateSupplier(@PathVariable("id") int id, @RequestBody Supplier Supplier) {
+    public ResponseEntity<Supplier> updateSupplier(@PathVariable("id") int id, @RequestBody Supplier supplier) {
         System.out.println("Updating Supplier " + id);
           
         Supplier currentSupplier = supService.findById(id);
@@ -134,12 +134,10 @@ public class SupRestController {
             return new ResponseEntity<Supplier>(HttpStatus.BAD_REQUEST);
         }
         System.out.println("Supplier with id " + id + "  found ");
-        currentSupplier.setName(Supplier.getName());
-        currentSupplier.setDescp(Supplier.getDescp());
- //       currentSupplier.setCatalogue((Supplier.getImage()));
-        supService.updateSupplier(currentSupplier);
+        supplier.setId(currentSupplier.getId());
+        supService.updateSupplier(supplier);
         
-        return new ResponseEntity<Supplier>(currentSupplier, HttpStatus.OK);
+        return new ResponseEntity<Supplier>(supService.findById(id), HttpStatus.OK);
     }
   
      

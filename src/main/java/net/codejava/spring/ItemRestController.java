@@ -131,7 +131,7 @@ public class ItemRestController {
         item.setId(currentItem.getId());
         itemService.updateItem(item);
         
-        return new ResponseEntity<Item>(currentItem, HttpStatus.OK);
+        return new ResponseEntity<Item>(itemService.findById(id), HttpStatus.OK);
     }
   
      

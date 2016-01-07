@@ -32,6 +32,12 @@
 		</id>
 		<property name="name" column="NAME" />
 		<property name="descp" column="DESCP" />
+		<property name="phone" column="PHONE" />
+		<property name="phone2" column="PHONE2" />
+		<property name="address1" column="ADDRESS1" />
+		<property name="address2" column="ADDRESS2" />
+		<property name="address3" column="ADDRESS3" />
+		
 	</class>
 	
 		<class name="Item" table="items">

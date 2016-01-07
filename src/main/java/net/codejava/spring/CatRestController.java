@@ -122,7 +122,7 @@ public class CatRestController {
     //------------------- Update a Category --------------------------------------------------------
       
     @RequestMapping(value = "/cat/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Category> updateCategory(@PathVariable("id") int id, @RequestBody Category Category) {
+    public ResponseEntity<Category> updateCategory(@PathVariable("id") int id, @RequestBody Category category) {
         System.out.println("Updating Category " + id);
           
         Category currentCategory = catService.findById(id);
@@ -132,12 +132,10 @@ public class CatRestController {
             return new ResponseEntity<Category>(HttpStatus.BAD_REQUEST);
         }
         System.out.println("Category with id " + id + "  found ");
-        currentCategory.setName(Category.getName());
-        currentCategory.setDescp(Category.getDescp());
- //       currentCategory.setCatalogue((Category.getImage()));
-        catService.updateCategory(currentCategory);
+        category.setId(currentCategory.getId());
+        catService.updateCategory(category);
         
-        return new ResponseEntity<Category>(currentCategory, HttpStatus.OK);
+        return new ResponseEntity<Category>(catService.findById(id), HttpStatus.OK);
     }
   
      

@@ -120,7 +120,7 @@ public class SalesOrderRestController {
     //------------------- Update a SalesOrder --------------------------------------------------------
       
     @RequestMapping(value = "/SalesOrder/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<SalesOrder> updateSalesOrder(@PathVariable("id") int id, @RequestBody SalesOrder SalesOrder) {
+    public ResponseEntity<SalesOrder> updateSalesOrder(@PathVariable("id") int id, @RequestBody SalesOrder salesOrder) {
         System.out.println("Updating SalesOrder " + id);
           
         SalesOrder currentSalesOrder = SalesOrderService.findById(id);
@@ -130,12 +130,12 @@ public class SalesOrderRestController {
             return new ResponseEntity<SalesOrder>(HttpStatus.BAD_REQUEST);
         }
         System.out.println("SalesOrder with id " + id + "  found ");
-        currentSalesOrder.setOrderNumber(SalesOrder.getOrderNumber());
-        currentSalesOrder.setOrderDetails(SalesOrder.getOrderDetails());
+        salesOrder.setId(currentSalesOrder.getId());
+     //   currentSalesOrder.setOrderDetails(SalesOrder.getOrderDetails());
 
-        SalesOrderService.updateSalesOrder(currentSalesOrder);
+        SalesOrderService.updateSalesOrder(salesOrder);
         
-        return new ResponseEntity<SalesOrder>(currentSalesOrder, HttpStatus.OK);
+        return new ResponseEntity<SalesOrder>(salesOrder, HttpStatus.OK);
     }
   
      

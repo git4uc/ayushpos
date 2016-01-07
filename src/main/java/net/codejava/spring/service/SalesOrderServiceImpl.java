@@ -108,39 +108,19 @@ public class SalesOrderServiceImpl implements SalesOrderService{
    // @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/applicationContext.xml"})
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
-        //
-        /* Let us have a set of order details  */
-        List set1 = new ArrayList();
-        set1.add(new OrderDetail(1,23,23.4));
-        set1.add(new OrderDetail(2,36,45.6));
-           
-        /* Add */
-   	//	SalesOrderDAOImpl sodao = (SalesOrderDAOImpl) context.getBean("salesorderDoa");
-        SalesOrderService soImpl = (SalesOrderService) context.getBean("SalesOrderService");
- 
-        SalesOrder so1 = new SalesOrder();
-        so1.setOrderNumber("DT11");
-        so1.setTotDis(10);
-    //    Calendar calendar = Calendar.getInstance();
-   //     java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
-   //     so1.setOrderDate(orddt);
-        so1.setOrderDetails((List<OrderDetail>) set1);
-        Integer soID1 = soImpl.saveSalesOrder(so1);
-        /* List  */
-        soImpl.findAllSalesOrders();
 
         /* Update  */
-    
+        SalesOrderService soImpl = (SalesOrderService) context.getBean("SalesOrderService");
         SalesOrder so11 = (SalesOrder)soImpl.findAllSalesOrders().iterator().next();
         so11.setOrderNumber("ON111UPDATE");
         List<OrderDetail> ods1 =so11.getOrderDetails();
        for (Iterator it2 = 
                   ods1.iterator(); it2.hasNext();){
            OrderDetail od = (OrderDetail) it2.next(); 
-           od.setPrice(45.5);
+           od.setPrice(1234);
            System.out.println("OrderDetailin test: " + od.getItemid()); 
      }
-	
+       soImpl.updateSalesOrder(so11);
        //
   
         
