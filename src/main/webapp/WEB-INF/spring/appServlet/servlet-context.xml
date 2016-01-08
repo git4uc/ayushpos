@@ -62,31 +62,25 @@
 	    </constructor-arg>
 	</bean> 
 	
-	<bean id="userService" class="net.codejava.spring.service.UserServiceImpl">
-	</bean> 
-	
-		<bean id="itemDao" class="net.codejava.spring.dao.ItemDAOImpl">
-	    <constructor-arg>
-	        <ref bean="sessionFactory" />
-	    </constructor-arg>
-	</bean> 
-	
-	<bean id="itemService" class="net.codejava.spring.service.ItemServiceImpl">
-	</bean> 
-	
-			<bean id="categoryDao" class="net.codejava.spring.dao.CategoryDAOImpl">
-	    <constructor-arg>
-	        <ref bean="sessionFactory" />
-	    </constructor-arg>
-	</bean> 
-	
-	<bean id="catService" class="net.codejava.spring.service.CatServiceImpl">
-	</bean> 
-	
-		<bean id="supService" class="net.codejava.spring.service.SupServiceImpl">
-	</bean> 
 
-			<bean id="supplierDao" class="net.codejava.spring.dao.SupplierDAOImpl">
+	
+    <bean id="itemDao" class="net.codejava.spring.dao.ItemDAOImpl">
+	    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
+
+	
+	<bean id="categoryDao" class="net.codejava.spring.dao.CategoryDAOImpl">
+	    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 
+	
+
+
+	<bean id="supplierDao" class="net.codejava.spring.dao.SupplierDAOImpl">
 	    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
@@ -101,25 +95,21 @@
 	</bean> 
 	
 	
-	 	<bean id="orderDoa" class="net.codejava.spring.dao.OrderDAOImpl">
+	<bean id="orderDoa" class="net.codejava.spring.dao.OrderDAOImpl">
 		    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
 	</bean> 
 	
-	<bean id="salesOrderService" class="net.codejava.spring.service.SalesOrderServiceImpl">
-	</bean>
 	
-		 	<bean id="salesorderDoa" class="net.codejava.spring.dao.SalesOrderDAOImpl">
+	<bean id="salesorderDoa" class="net.codejava.spring.dao.SalesOrderDAOImpl">
 		    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
 	</bean> 
 	
-		<bean id="purchaseOrderService" class="net.codejava.spring.service.PurchaseOrderServiceImpl">
-	</bean>
 	
-		 	<bean id="purchaseorderDoa" class="net.codejava.spring.dao.PurchaseOrderDAOImpl">
+	<bean id="purchaseorderDoa" class="net.codejava.spring.dao.PurchaseOrderDAOImpl">
 		    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>

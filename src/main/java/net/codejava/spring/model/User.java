@@ -20,6 +20,9 @@ public class User {
     private String email;
     
     private int age;
+    
+    private String job;
+    private String customerType;
      
     public User(){
         id=0;
@@ -129,6 +132,22 @@ public class User {
 
 	public void setFax(String fax) {
 		this.fax = fax;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
      
  

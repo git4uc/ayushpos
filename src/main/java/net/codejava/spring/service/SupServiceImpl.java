@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import net.codejava.spring.dao.SupplierDAO;
 import net.codejava.spring.model.Supplier;
  
-@Service("SupService")
+@Service("supService")
 @Transactional
 public class SupServiceImpl implements SupService{
      

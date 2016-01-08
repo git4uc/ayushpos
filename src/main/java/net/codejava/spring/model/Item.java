@@ -17,6 +17,7 @@ public class Item {
 	private boolean discontinued;
 	private String reasondiscont;
 	private Category category;
+	private Supplier supplier;
 	//private String image;
 	
 	public Item() {
@@ -182,5 +183,15 @@ public class Item {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
 	}
 }

@@ -46,7 +46,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class SalesOrderRestController {
 
 	@Autowired
-	   SalesOrderService SalesOrderService;  //Service which will do all data retrieval/manipulation work 
+	   SalesOrderService salesOrderService;  //Service which will do all data retrieval/manipulation work 
 	
     //-------------------Retrieve All SalesOrders--------------------------------------------------------
 	
@@ -56,7 +56,7 @@ public class SalesOrderRestController {
     	System.out.println("Testing testing /cagepos/SalesOrder Y - 11/14");
     	//Implemeted - Usha
     
-       List<SalesOrder> SalesOrders = SalesOrderService.findAllSalesOrders();
+       List<SalesOrder> SalesOrders = salesOrderService.findAllSalesOrders();
         if(SalesOrders.isEmpty()){
             return new ResponseEntity<List<SalesOrder>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
@@ -73,7 +73,7 @@ public class SalesOrderRestController {
     public ResponseEntity<SalesOrder> getSalesOrder(@PathVariable("id") int id) {
         System.out.println("Fetching SalesOrder with id " + id);
       //Implemeted - Usha
-        SalesOrder SalesOrder = SalesOrderService.findById(id);
+        SalesOrder SalesOrder = salesOrderService.findById(id);
         if (SalesOrder == null) {
             System.out.println("SalesOrder with id " + id + " not found");
             return new ResponseEntity<SalesOrder>(HttpStatus.NOT_FOUND);
@@ -88,7 +88,7 @@ public class SalesOrderRestController {
     public ResponseEntity<List<SalesOrder>> getSalesOrder(@PathVariable("sno") String sno) {
         System.out.println("Fetching SalesOrder with name " + sno);
       //Implemeted - Usha
-        List<SalesOrder> SalesOrders = SalesOrderService.findByOrderNo(sno);
+        List<SalesOrder> SalesOrders = salesOrderService.findByOrderNo(sno);
         if (SalesOrders == null) {
             System.out.println("SalesOrder with id " + sno + " not found");
             return new ResponseEntity<List<SalesOrder>>(HttpStatus.NOT_FOUND);
@@ -101,7 +101,7 @@ public class SalesOrderRestController {
     public ResponseEntity<Void> createSalesOrder(@RequestBody SalesOrder SalesOrder,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating SalesOrder " + SalesOrder.getOrderNumber());
   
-        if (SalesOrderService.isSalesOrderExist(SalesOrder)) {
+        if (salesOrderService.isSalesOrderExist(SalesOrder)) {
             System.out.println("A SalesOrder with name " + SalesOrder.getOrderNumber()+ " already exist");
             ErrorResponse errResp = new ErrorResponse(ErrorCode.INVALID_ID);
          //   return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -109,7 +109,7 @@ public class SalesOrderRestController {
             return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
         }
       //Implemeted - Usha
-        SalesOrderService.saveSalesOrder(SalesOrder);
+        salesOrderService.saveSalesOrder(SalesOrder);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/SalesOrder/{id}").buildAndExpand(SalesOrder.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -123,7 +123,7 @@ public class SalesOrderRestController {
     public ResponseEntity<SalesOrder> updateSalesOrder(@PathVariable("id") int id, @RequestBody SalesOrder salesOrder) {
         System.out.println("Updating SalesOrder " + id);
           
-        SalesOrder currentSalesOrder = SalesOrderService.findById(id);
+        SalesOrder currentSalesOrder = salesOrderService.findById(id);
         
         if (currentSalesOrder==null) {
             System.out.println("SalesOrder with id " + id + " not found");
@@ -133,7 +133,7 @@ public class SalesOrderRestController {
         salesOrder.setId(currentSalesOrder.getId());
      //   currentSalesOrder.setOrderDetails(SalesOrder.getOrderDetails());
 
-        SalesOrderService.updateSalesOrder(salesOrder);
+        salesOrderService.updateSalesOrder(salesOrder);
         
         return new ResponseEntity<SalesOrder>(salesOrder, HttpStatus.OK);
     }
@@ -146,7 +146,7 @@ public class SalesOrderRestController {
     public ResponseEntity<SalesOrder> deleteSalesOrder(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting SalesOrder with id " + id);
         //Implemented
-        SalesOrderService.deleteSalesOrderById(id);
+        salesOrderService.deleteSalesOrderById(id);
         return new ResponseEntity(HttpStatus.OK);
     }
   
@@ -158,7 +158,7 @@ public class SalesOrderRestController {
     public ResponseEntity<SalesOrder> deleteAllSalesOrders() {
         System.out.println("Deleting All SalesOrders");
   
-        SalesOrderService.deleteAllSalesOrders();
+        salesOrderService.deleteAllSalesOrders();
         return new ResponseEntity<SalesOrder>(HttpStatus.NO_CONTENT);
     }
   

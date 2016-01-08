@@ -117,7 +117,9 @@ public class UserServiceImpl implements UserService{
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
         UserService usrImpl = (UserService) context.getBean("userService");
         User user = new User();
-        user.setUsername("Adhvaidh");
+        user.setUsername("Adhimon");
+        user.setCustomerType("Pilot");
+        user.setJob("Fly");
     	usrImpl.saveUser(user);
         
         User usr = usrImpl.findById(26); 

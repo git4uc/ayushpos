@@ -17,7 +17,7 @@ import net.codejava.spring.dao.ItemDAO;
 import net.codejava.spring.model.Category;
 import net.codejava.spring.model.Item;
  
-@Service("ItemService")
+@Service("itemService")
 @Transactional
 public class ItemServiceImpl implements ItemService{
      
@@ -114,7 +114,7 @@ public class ItemServiceImpl implements ItemService{
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
         
         
-        ItemService itmImpl = (ItemService) context.getBean("ItemService");
+        ItemService itmImpl = (ItemService) context.getBean("itemService");
         
       Item item = new Item(8);
         item.setCode("ITEMN11");

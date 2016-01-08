@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import net.codejava.spring.dao.CategoryDAO;
 import net.codejava.spring.model.Category;
  
-@Service("CatService")
+@Service("catService")
 @Transactional
 public class CatServiceImpl implements CatService{
      

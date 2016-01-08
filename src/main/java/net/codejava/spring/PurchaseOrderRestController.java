@@ -46,7 +46,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class PurchaseOrderRestController {
 
 	@Autowired
-	   PurchaseOrderService PurchaseOrderService;  //Service which will do all data retrieval/manipulation work 
+	   PurchaseOrderService purchaseOrderService;  //Service which will do all data retrieval/manipulation work 
 	
     //-------------------Retrieve All PurchaseOrders--------------------------------------------------------
 	
@@ -56,7 +56,7 @@ public class PurchaseOrderRestController {
     	System.out.println("Testing testing /cagepos/PurchaseOrder Y - 1/14");
     	//Implemeted - Usha
     
-       List<PurchaseOrder> PurchaseOrders = PurchaseOrderService.findAllPurchaseOrders();
+       List<PurchaseOrder> PurchaseOrders = purchaseOrderService.findAllPurchaseOrders();
         if(PurchaseOrders.isEmpty()){
             return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
@@ -73,7 +73,7 @@ public class PurchaseOrderRestController {
     public ResponseEntity<PurchaseOrder> getPurchaseOrder(@PathVariable("id") int id) {
         System.out.println("Fetching PurchaseOrder with id " + id);
       //Implemeted - Usha
-        PurchaseOrder PurchaseOrder = PurchaseOrderService.findById(id);
+        PurchaseOrder PurchaseOrder = purchaseOrderService.findById(id);
         if (PurchaseOrder == null) {
             System.out.println("PurchaseOrder with id " + id + " not found");
             return new ResponseEntity<PurchaseOrder>(HttpStatus.NOT_FOUND);
@@ -88,7 +88,7 @@ public class PurchaseOrderRestController {
     public ResponseEntity<List<PurchaseOrder>> getPurchaseOrder(@PathVariable("pno") String pno) {
         System.out.println("Fetching PurchaseOrder with name " + pno);
       //Implemeted - Usha
-        List<PurchaseOrder> PurchaseOrders = PurchaseOrderService.findByOrderNo(pno);
+        List<PurchaseOrder> PurchaseOrders = purchaseOrderService.findByOrderNo(pno);
         if (PurchaseOrders == null) {
             System.out.println("PurchaseOrder with id " + pno + " not found");
             return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
@@ -101,7 +101,7 @@ public class PurchaseOrderRestController {
     public ResponseEntity<Void> createPurchaseOrder(@RequestBody PurchaseOrder PurchaseOrder,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating PurchaseOrder " + PurchaseOrder.getOrderNumber());
   
-        if (PurchaseOrderService.isPurchaseOrderExist(PurchaseOrder)) {
+        if (purchaseOrderService.isPurchaseOrderExist(PurchaseOrder)) {
             System.out.println("A PurchaseOrder with name " + PurchaseOrder.getOrderNumber()+ " already exist");
             ErrorResponse errResp = new ErrorResponse(ErrorCode.INVALID_ID);
          //   return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -109,7 +109,7 @@ public class PurchaseOrderRestController {
             return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
         }
       //Implemeted - Usha
-        PurchaseOrderService.savePurchaseOrder(PurchaseOrder);
+        purchaseOrderService.savePurchaseOrder(PurchaseOrder);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/PurchaseOrder/{id}").buildAndExpand(PurchaseOrder.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -123,7 +123,7 @@ public class PurchaseOrderRestController {
     public ResponseEntity<PurchaseOrder> updatePurchaseOrder(@PathVariable("id") int id, @RequestBody PurchaseOrder purchaseOrder) {
         System.out.println("Updating PurchaseOrder " + id);
           
-        PurchaseOrder currentPurchaseOrder = PurchaseOrderService.findById(id);
+        PurchaseOrder currentPurchaseOrder = purchaseOrderService.findById(id);
         
         if (currentPurchaseOrder==null) {
             System.out.println("PurchaseOrder with id " + id + " not found");
@@ -133,9 +133,9 @@ public class PurchaseOrderRestController {
         purchaseOrder.setId(currentPurchaseOrder.getId());
 
 
-        PurchaseOrderService.updatePurchaseOrder(purchaseOrder);
+        purchaseOrderService.updatePurchaseOrder(purchaseOrder);
         
-        return new ResponseEntity<PurchaseOrder>(PurchaseOrderService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<PurchaseOrder>(purchaseOrderService.findById(id), HttpStatus.OK);
     }
   
      
@@ -146,7 +146,7 @@ public class PurchaseOrderRestController {
     public ResponseEntity<PurchaseOrder> deletePurchaseOrder(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting PurchaseOrder with id " + id);
         //Implemented
-        PurchaseOrderService.deletePurchaseOrderById(id);
+        purchaseOrderService.deletePurchaseOrderById(id);
         return new ResponseEntity(HttpStatus.OK);
     }
   
@@ -158,7 +158,7 @@ public class PurchaseOrderRestController {
     public ResponseEntity<PurchaseOrder> deleteAllPurchaseOrders() {
         System.out.println("Deleting All PurchaseOrders");
   
-        PurchaseOrderService.deleteAllPurchaseOrders();
+        purchaseOrderService.deleteAllPurchaseOrders();
         return new ResponseEntity<PurchaseOrder>(HttpStatus.NO_CONTENT);
     }
   

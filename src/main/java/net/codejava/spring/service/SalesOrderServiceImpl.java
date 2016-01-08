@@ -29,7 +29,7 @@ import net.codejava.spring.model.Item;
 import net.codejava.spring.model.OrderDetail;
 import net.codejava.spring.model.SalesOrder;
  
-@Service("SalesOrderService")
+@Service("salesOrderService")
 @Transactional
 public class SalesOrderServiceImpl implements SalesOrderService{
      
@@ -110,7 +110,7 @@ public class SalesOrderServiceImpl implements SalesOrderService{
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
 
         /* Update  */
-        SalesOrderService soImpl = (SalesOrderService) context.getBean("SalesOrderService");
+        SalesOrderService soImpl = (SalesOrderService) context.getBean("salesOrderService");
         SalesOrder so11 = (SalesOrder)soImpl.findAllSalesOrders().iterator().next();
         so11.setOrderNumber("ON111UPDATE");
         List<OrderDetail> ods1 =so11.getOrderDetails();
