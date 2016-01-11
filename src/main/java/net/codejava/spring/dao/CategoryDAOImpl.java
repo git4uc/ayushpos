@@ -104,6 +104,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         try {
             trns = session.beginTransaction();
             Category cat = new Category(catid);
+            cat.setId(catid);
             session.delete(cat);
             session.getTransaction().commit();
         } catch (RuntimeException e) {

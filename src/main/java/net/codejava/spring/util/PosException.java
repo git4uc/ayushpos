@@ -7,16 +7,9 @@ public class PosException  extends Exception {
 		  private String errorMsg;
 
 		  public PosException(ErrorCode code) {
-		    this.errorMsg = code.getMsg();
-		    this.errorCode = code.getId();
+		   super(code.getMsg());
 		  }
 
-		  public int getErrorCode() {
-		    return errorCode;
-		  }
 
-		  public String getErrorMsg() {
-		    return errorMsg;
-		  }
 		}
 

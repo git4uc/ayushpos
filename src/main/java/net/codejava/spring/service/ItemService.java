@@ -6,7 +6,7 @@ import net.codejava.spring.model.Item;
   
 public interface ItemService {
      
-    Item findById(int id);
+    Item findById(int id) ;
      
     List<Item> findByName(String name);
      

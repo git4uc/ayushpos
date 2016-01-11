@@ -119,14 +119,15 @@ public class ItemServiceImpl implements ItemService{
       Item item = new Item(8);
         item.setCode("ITEMN11");
         item.setTax(1);
-    //    Category cat = new Category(1);
-       // cat.setId(1);
-   //     cat.setName("NDDD");
- //       item.setCategory(cat);
+       Category cat = new Category(1);
+       cat.setId(1);
+       cat.setName("NDDD");
+     item.setCategory(cat);
     	itmImpl.saveItem(item); 
         
-        Item item1 = itmImpl.findById(7); 
+        Item item1 = itmImpl.findById(34); 
         item1.setName("DLY PODI");
+        item1.setCategory(cat);
         itmImpl.updateItem(item1); 
     //	List<Item> Items = itmImpl.findByName("POD"); 
         List<Item> Items = itmImpl.findAllItems();
@@ -136,6 +137,7 @@ public class ItemServiceImpl implements ItemService{
     		System.out.println("Cat Found " + itm1.getCategory().getName());
     		//System.out.println(usr1.getPrice());
     	}
+    	
     	/**Item.setEmail("New Email update.com");
     	usrImpl.updateItem(Item);
     	Item.setId(2);

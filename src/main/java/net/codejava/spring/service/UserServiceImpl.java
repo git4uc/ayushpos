@@ -121,21 +121,7 @@ public class UserServiceImpl implements UserService{
         user.setCustomerType("Pilot");
         user.setJob("Fly");
     	usrImpl.saveUser(user);
-        
-        User usr = usrImpl.findById(26); 
-        usr.setAccountid("NEWCAR_26");
-        usrImpl.updateUser(usr);
-    	List<User> users = usrImpl.findByName("Adhi"); 
-        users = usrImpl.findAllUsers();
-    	for(User usr1 : users){
-    		System.out.println(usr1.getUsername());
-    		System.out.println(usr1.getAccountid());
-    	}
-    	/**user.setEmail("New Email update.com");
-    	usrImpl.updateUser(user);
-    	user.setId(2);
-    	usrImpl.deleteUserById(user.getId()); **/
-    	System.exit(0);
+      	System.exit(0);
     }
 
 	

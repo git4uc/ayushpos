@@ -98,29 +98,46 @@ public class CatServiceImpl implements CatService{
         ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
         
         
-        CatService itmImpl = (CatService) context.getBean("catService");
-        Category Category = new Category(23);
-        Category.setName("REALNEWE");
-        Category.setDescp("Snacks Hot");
-        if(!itmImpl.isCategoryExist(Category))
-    	      itmImpl.saveCategory(Category); 
-        else
-        	System.out.println("Category already exists");
-        Category category1 = itmImpl.findById(15); //1
-        category1.setName("DLY PODI");
-        itmImpl.updateCategory(category1);
-    	List<Category> categorys1 = itmImpl.findByName("POD"); 
-       List<Category> categorys = itmImpl.findAllCategorys();
-    	for(Category itm1 : categorys){
-    		System.out.println(itm1.getName());
-    		//System.out.println(usr1.getPrice());
-    	}
-    	/**Category.setEmail("New Email update.com");
-    	usrImpl.updateCategory(Category);
-    	Category.setId(2);
-    	usrImpl.deleteCategoryById(Category.getId()); **/
+        CatService catImpl = (CatService) context.getBean("catService");
+        Category Category = new Category(32);
+    /**           Category.setName("Snacks");
+                Category.setDescp("Snacks Hot");
+                if(!catImpl.isCategoryExist(Category))
+            	      catImpl.saveCategory(Category); 
+                else **/
+            catImpl.deleteCategoryById(32);
+        
     	System.exit(0);
     }
 
+    private void example(){
+      ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
+        
+        
+        CatService catImpl = (CatService) context.getBean("catService");
+        Category Category = new Category(32);
+     Category.setName("Snacks");
+        Category.setDescp("Snacks Hot");
+        if(!catImpl.isCategoryExist(Category))
+    	      catImpl.saveCategory(Category); 
+        else
+ //       catImpl.deleteCategoryById(32);
+    	System.exit(0);
+    	System.out.println("Category already exists");
+    Category category1 = catImpl.findById(15); //1
+    category1.setName("DLY PODI");
+    catImpl.updateCategory(category1);
+	List<Category> categorys1 = catImpl.findByName("POD"); 
+   List<Category> categorys = catImpl.findAllCategorys();
+	for(Category itm1 : categorys){
+		System.out.println(itm1.getName());
+		//System.out.println(usr1.getPrice());
+	}
+	/**Category.setEmail("New Email update.com");
+	usrImpl.updateCategory(Category);
+	Category.setId(2);
+	usrImpl.deleteCategoryById(Category.getId()); **/
+
+    }
 	
 }
