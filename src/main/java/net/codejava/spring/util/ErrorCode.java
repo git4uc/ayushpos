@@ -3,7 +3,9 @@ package net.codejava.spring.util;
 public enum ErrorCode{
 	//Usage - throw new PosException(ErrorCodes.INVALID_ID);
 	  INVALID_ID(101, "The id is invalid"),
-	  INVALID_USER(102, "user is missing");
+	  INVALID_USER(102, "user is missing"),
+	  DATA_ERROR(401, "Error in the database");
+	
 
 	  private final int id;
 	  private final String msg;

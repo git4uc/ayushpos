@@ -2,21 +2,12 @@ package net.codejava.spring.dao;
 
  import java.util.*;
 
-import net.codejava.spring.dao.StockDAOImpl;
-import net.codejava.spring.model.Certificate;
-import net.codejava.spring.model.Employee;
-import net.codejava.spring.model.Item;
-import net.codejava.spring.model.OrderDetail;
 import net.codejava.spring.model.PurchaseOrder;
 
 import org.hibernate.HibernateException; 
-import org.hibernate.Query;
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 
@@ -73,15 +64,16 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
   }
 
   /* Method to list all the e detail */
-  public List listPurchaseOrders( ){
+  public List<PurchaseOrder> listPurchaseOrders( ){
      Session session = sessionFactory.openSession();
      Transaction tx = null;
      try{
         tx = session.beginTransaction();
-        List purchaseorders = session.createQuery("FROM PurchaseOrder").list(); 
-        for (Iterator iterator1 = 
+                @SuppressWarnings("unchecked")
+				List<PurchaseOrder> purchaseorders = session.createQuery("FROM PurchaseOrder").list(); 
+        for (Iterator<PurchaseOrder> iterator1 = 
         		purchaseorders.iterator(); iterator1.hasNext();){
-           PurchaseOrder so = (PurchaseOrder) iterator1.next(); 
+           PurchaseOrder so = iterator1.next(); 
            System.out.print("Order Number: " + so.getOrderNumber()); 
 
         }
@@ -163,9 +155,9 @@ public List<PurchaseOrder> getOrderByOrderNo(String orderno) {
 			List<PurchaseOrder> purchaseorders = query.list(); **/
     	List<PurchaseOrder> purchaseorders = session.createQuery("FROM PurchaseOrder where ordernumber like '"+orderno+"'").list(); 
 		
-       for (Iterator iterator1 = 
+       for (Iterator<PurchaseOrder> iterator1 = 
        		purchaseorders.iterator(); iterator1.hasNext();){
-          PurchaseOrder so = (PurchaseOrder) iterator1.next(); 
+          PurchaseOrder so = iterator1.next(); 
           System.out.print("Order Number: " + so.getOrderNumber()); 
 
        }

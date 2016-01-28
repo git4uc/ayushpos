@@ -13,6 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
+
+
+
+
 import net.codejava.spring.dao.CategoryDAO;
 import net.codejava.spring.model.Category;
  
@@ -53,7 +58,7 @@ public class CatServiceImpl implements CatService{
     }
      
     
-    public void saveCategory(Category Category) {
+    public void saveCategory(Category Category) throws Exception {
        // Category.setId(counter.incrementAndGet());
         CategoryDao.addCategory(Category);
     }
@@ -62,8 +67,14 @@ public class CatServiceImpl implements CatService{
     	CategoryDao.updateCategory(Category);
     }
  
-    public void deleteCategoryById(int id) {
-    	CategoryDao.deleteCategory(id);
+    public void deleteCategoryById(int id) throws Exception {
+    	try {
+			CategoryDao.deleteCategory(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
   
     }
  
@@ -99,14 +110,27 @@ public class CatServiceImpl implements CatService{
         
         
         CatService catImpl = (CatService) context.getBean("catService");
-        Category Category = new Category(32);
-    /**           Category.setName("Snacks");
+        Category Category = new Category(31);
+             Category.setName("Snacks");
                 Category.setDescp("Snacks Hot");
-                if(!catImpl.isCategoryExist(Category))
-            	      catImpl.saveCategory(Category); 
-                else **/
-            catImpl.deleteCategoryById(32);
-        
+            	try {
+                //if(!catImpl.isCategoryExist(Category))
+				
+						//catImpl.saveCategory(Category);
+				
+                	catImpl.deleteCategoryById(31);
+                
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
+            
+    
+                	   List<Category> categorys = catImpl.findAllCategorys();
+            	for(Category itm1 : categorys){
+            		System.out.println(itm1.getName());
+            		//System.out.println(usr1.getPrice());
+            	}
     	System.exit(0);
     }
 
@@ -119,8 +143,13 @@ public class CatServiceImpl implements CatService{
      Category.setName("Snacks");
         Category.setDescp("Snacks Hot");
         if(!catImpl.isCategoryExist(Category))
-    	      catImpl.saveCategory(Category); 
-        else
+			try {
+				catImpl.saveCategory(Category);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		else
  //       catImpl.deleteCategoryById(32);
     	System.exit(0);
     	System.out.println("Category already exists");

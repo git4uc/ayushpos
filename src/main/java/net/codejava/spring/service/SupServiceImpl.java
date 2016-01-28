@@ -111,7 +111,7 @@ public class SupServiceImpl implements SupService{
     	      itmImpl.saveSupplier(Supplier); 
         else
         	System.out.println("Supplier already exists");
-       Supplier Supplier1 = itmImpl.findById(29); //1
+       Supplier Supplier1 = itmImpl.findById(37); //1
         Supplier1.setName("Update");
         itmImpl.updateSupplier(Supplier1);
     	List<Supplier> Suppliers1 = itmImpl.findByName("New"); 

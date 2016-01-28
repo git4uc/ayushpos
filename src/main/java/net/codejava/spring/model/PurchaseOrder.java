@@ -10,7 +10,7 @@ import java.util.*;
 	   private int qty;
 	   private String notes;
 	   private int itemId;
-	   private int supId;
+	   private Supplier sup;
 	   private double totAmt;
 	   
 	   //private Set orderdetails;
@@ -77,11 +77,14 @@ import java.util.*;
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
-	public int getSupId() {
-		return supId;
+	
+
+	
+	public Supplier getSup() {
+		return sup;
 	}
-	public void setSupId(int supId) {
-		this.supId = supId;
+	public void setSup(Supplier sup) {
+		this.sup = sup;
 	}
 	public double getTotAmt() {
 		return totAmt;

@@ -63,8 +63,7 @@
 		<property name="reasondiscont" column="REASONDISCONT" />
 		
          <many-to-one name="category" column="categoryid" 
-       class="net.codejava.spring.model.Category" fetch="join" lazy="false" cascade="all"/>
-         <many-to-one name="supplier" column="supid" class="net.codejava.spring.model.Supplier" fetch="join" insert="false" update="false"/>
+       class="net.codejava.spring.model.Category" fetch="join" lazy="false" update="true"/>
 	</class>
 
    

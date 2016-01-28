@@ -10,12 +10,19 @@ public class ErrorResponse   {
 
 	//Usage - throw new PosException(ErrorCodes.INVALID_ID);
 
-	  private final int id;
-	  private final String msg;
+	  private int id;
+	  private String msg;
+	  private String desc;
 
 	  public ErrorResponse(ErrorCode errcd) {
 		    this.id = errcd.getId();
 		    this.msg = errcd.getMsg();
+		  }
+	  
+	  public ErrorResponse(ErrorCode errcd,String desc) {
+		    this.id = errcd.getId();
+		    this.msg = errcd.getMsg();
+		    this.desc = desc;
 		  }
 	  
 	  ErrorResponse(int id, String msg) {
@@ -30,5 +37,13 @@ public class ErrorResponse   {
 	  public String getMsg() {
 	    return this.msg;
 	  }
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	}
 

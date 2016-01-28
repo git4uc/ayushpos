@@ -23,11 +23,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
+
+
 import net.codejava.spring.dao.PurchaseOrderDAO;
 import net.codejava.spring.dao.PurchaseOrderDAOImpl;
 import net.codejava.spring.model.Item;
 import net.codejava.spring.model.OrderDetail;
 import net.codejava.spring.model.PurchaseOrder;
+import net.codejava.spring.model.Supplier;
  
 @Service("PurchaseOrderService")
 @Transactional
@@ -112,16 +116,20 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
           
         /* Add */
    	//	PurchaseOrderDAOImpl sodao = (PurchaseOrderDAOImpl) context.getBean("purchaseorderDoa");
-        PurchaseOrderService soImpl = (PurchaseOrderService) context.getBean("purchaseOrderService");
+        PurchaseOrderService soImpl = (PurchaseOrderService) context.getBean("PurchaseOrderService");
  
         PurchaseOrder so1 = new PurchaseOrder();
 
         so1.setOrderNumber("IT_NEWREAL");
         so1.setNotes("Notes");
         so1.setTotAmt(23888.45);
+        Supplier sup1 = new Supplier();
+        sup1.setId(37);
+        so1.setSup(sup1);
     //    Calendar calendar = Calendar.getInstance();
    //     java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
    //     so1.setOrderDate(orddt);
+          
 
         Integer soID1 = soImpl.savePurchaseOrder(so1);
         /* List  */
@@ -129,13 +137,21 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 
         /* Update  */
     
-        PurchaseOrder so11 = (PurchaseOrder)soImpl.findAllPurchaseOrders().iterator().next();
-        so11.setOrderNumber("ON111UPDATE");
+        PurchaseOrder so11 = soImpl.findAllPurchaseOrders().iterator().next();
+        so11.setOrderNumber("UPDATEDORDER");
+        Supplier sup11 = new Supplier();
+        sup11.setId(38);
+        so11.setSup(sup11);
+        soImpl.updatePurchaseOrder(so11);
  	
        //
-  
-        String  pono = soImpl.findById(1).getOrderNumber();
-        System.out.println(pono);
+        List<PurchaseOrder> pos = soImpl.findAllPurchaseOrders();
+        //  List<Item> Items = itmImpl.findByCatName("breakfast");
+      	for(PurchaseOrder po : pos){
+      		System.out.println("po Found " + po.getOrderNumber());
+      		System.out.println("Supplier Found " + po.getSup().getName());
+      		//System.out.println(usr1.getPrice());
+      	}	
     	System.exit(0);
     }
 
@@ -149,7 +165,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
         so1.setNotes("Notes");
         Integer soID1 = soImpl.savePurchaseOrder(so1);
         // List by Order Number
-         PurchaseOrder so11 = soImpl.findByOrderNo("ON111UPDATE").iterator().next();
+ 	
+
      }
 	private void allExample(){
 	      ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
@@ -160,16 +177,19 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
         PurchaseOrderService soImpl = (PurchaseOrderService) context.getBean("PurchaseOrderService");
  
         PurchaseOrder so1 = new PurchaseOrder();
-        so1.setOrderNumber("NT_NEWREAL");
-        so1.setNotes("Notes");
-        Integer soID1 = soImpl.savePurchaseOrder(so1);
-        /* List  */
+        so1.setOrderNumber("NT_NEWREAL11");
+        so1.setNotes("Notes1111");
+        Supplier sup = so1.getSup();
+        sup.setId(38);
+        so1.setSup(sup);
+        soImpl.updatePurchaseOrder(so1);
+        /* List  *
         soImpl.findAllPurchaseOrders();
 
         /* Update  */
     
         PurchaseOrder so11 = (PurchaseOrder)soImpl.findAllPurchaseOrders().iterator().next();
-        so11.setOrderNumber("ON111UPDATE");
+     //   so11.setOrderNumber("ON111UPDATE");
 
 	}
 }

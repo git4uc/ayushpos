@@ -41,7 +41,7 @@
          <generator class="native"/>
       </id>
       <property name="itemId" column="itemid" type="int"/>
-      <property name="supId" column="supplierid" type="int"/>
+
       <property name="qty" column="qty" type="int"/>
       <property name="rate" column="rate" type="double"/>
       <property name="orderNumber" column="ordernumber" type="string"/>
@@ -49,6 +49,9 @@
        <property name="deliveryDt" column="deliverydate" type="date"/>
        <property name="notes" column="notes" type="string"/>
         <property name="totAmt" column="totalamt" type="double"/>
+        <many-to-one name="sup" column="supplierid" 
+         class="net.codejava.spring.model.Supplier" fetch="join" lazy="false" update="false"/>
+        
    </class>
    
 

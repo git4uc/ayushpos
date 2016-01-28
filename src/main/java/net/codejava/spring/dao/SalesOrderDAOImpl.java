@@ -79,7 +79,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
      Transaction tx = null;
      try{
         tx = session.beginTransaction();
-        List salesorders = session.createQuery("FROM SalesOrder").list(); 
+       List salesorders = session.createQuery("FROM SalesOrder").list(); 
         for (Iterator iterator1 = 
         		salesorders.iterator(); iterator1.hasNext();){
            SalesOrder so = (SalesOrder) iterator1.next(); 

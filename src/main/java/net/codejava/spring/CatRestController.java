@@ -101,7 +101,7 @@ public class CatRestController {
 	@RequestMapping(value = "/cat/", method = RequestMethod.POST)
     public ResponseEntity<Void> createCategory(@RequestBody Category category,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Category " + category.getName());
-  
+        try{
         if (catService.isCategoryExist(category)) {
             System.out.println("A Category with name " + category.getName() + " already exist");
             ErrorResponse errResp = new ErrorResponse(ErrorCode.INVALID_ID);
@@ -111,7 +111,12 @@ public class CatRestController {
         }
       //Implemeted - Usha
         catService.saveCategory(category);
-  
+        }catch(Exception e){
+            ErrorResponse errResp = new ErrorResponse(ErrorCode.DATA_ERROR);
+        	e.printStackTrace();
+             return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
+        	
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/cat/{id}").buildAndExpand(category.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -146,7 +151,14 @@ public class CatRestController {
     public ResponseEntity<Category> deleteCategory(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting Category with id " + id);
         //Implemented
+        try{
         catService.deleteCategoryById(id);
+        }catch(Exception e){
+            ErrorResponse errResp = new ErrorResponse(ErrorCode.DATA_ERROR,e.getMessage());
+        	e.printStackTrace();
+             return new ResponseEntity(errResp,HttpStatus.BAD_REQUEST);
+        	
+        }
         return new ResponseEntity(HttpStatus.OK);
     }
   

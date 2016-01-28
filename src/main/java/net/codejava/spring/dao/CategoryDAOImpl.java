@@ -98,7 +98,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         }
     }
 	
-    public void deleteCategory(int catid) {
+    public void deleteCategory(int catid) throws Exception{
         Transaction trns = null;
         session = sessionFactory.openSession();
         try {
@@ -107,11 +107,12 @@ public class CategoryDAOImpl implements CategoryDAO {
             cat.setId(catid);
             session.delete(cat);
             session.getTransaction().commit();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
+          //  e.printStackTrace();
+            throw e;
         } finally {
         	session.clear();
             session.flush();
@@ -120,18 +121,19 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
     
     
-    public void addCategory(Category cat) {
+    public void addCategory(Category cat) throws Exception{
         Transaction trns = null;
         Session session = sessionFactory.openSession();
         try {
             trns = session.beginTransaction();
             session.save(cat);
             session.getTransaction().commit();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             if (trns != null) {
                 trns.rollback();
             }
             e.printStackTrace();
+            throw e;
         } finally {
         	session.clear();
             session.flush();

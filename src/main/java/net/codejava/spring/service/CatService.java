@@ -10,11 +10,11 @@ public interface CatService {
      
     List<Category> findByName(String name);
      
-    void saveCategory(Category category);
+    void saveCategory(Category category) throws Exception;
      
     void updateCategory(Category category);
      
-    void deleteCategoryById(int id);
+    void deleteCategoryById(int id) throws Exception;
  
     List<Category> findAllCategorys(); 
      
