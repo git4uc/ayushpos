@@ -64,6 +64,10 @@
 		
          <many-to-one name="category" column="categoryid" 
        class="net.codejava.spring.model.Category" fetch="join" lazy="false" update="true"/>
+       
+                <many-to-one name="po" column="poid" 
+       class="net.codejava.spring.model.PurchaseOrder" fetch="join" lazy="false" update="true"/>
+       
 	</class>
 
    

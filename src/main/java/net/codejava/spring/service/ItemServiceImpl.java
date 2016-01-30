@@ -13,9 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
 
+
+
 import net.codejava.spring.dao.ItemDAO;
 import net.codejava.spring.model.Category;
 import net.codejava.spring.model.Item;
+import net.codejava.spring.model.PurchaseOrder;
+import net.codejava.spring.model.Supplier;
  
 @Service("itemService")
 @Transactional
@@ -115,19 +119,29 @@ public class ItemServiceImpl implements ItemService{
         
         
         ItemService itmImpl = (ItemService) context.getBean("itemService");
-        
+        Category cat = new Category(1);
+        //   cat.setId(31);
+        //   cat.setName("New DDD");
+           
       Item item = new Item(8);
         item.setCode("ITEMN11");
         item.setTax(1);
-       Category cat = new Category(1);
-       cat.setId(1);
-       cat.setName("NDDD");
+        cat.setId(34);
      item.setCategory(cat);
+     
+     PurchaseOrder po = new PurchaseOrder();
+     po.setId(43);
+     item.setPo(po);
     	itmImpl.saveItem(item); 
         
-        Item item1 = itmImpl.findById(34); 
-        item1.setName("DLY PODI");
-        item1.setCategory(cat);
+        Item item1 = itmImpl.findById(36); 
+        item1.setName("DLY PODI11");
+        item1.setDeleted(true);
+       // Category cat1 = item1.getCategory();
+        Category cat1 = new Category(1);
+        cat1.setId(34);
+        
+       item1.setCategory(cat1);
         itmImpl.updateItem(item1); 
     //	List<Item> Items = itmImpl.findByName("POD"); 
         List<Item> Items = itmImpl.findAllItems();
@@ -135,6 +149,8 @@ public class ItemServiceImpl implements ItemService{
     	for(Item itm1 : Items){
     		System.out.println("Item Found " + itm1.getName());
     		System.out.println("Cat Found " + itm1.getCategory().getName());
+    		System.out.println("PO Found " + itm1.getPo().getOrderNumber());
+    		System.out.println("Deleted " + itm1.isDeleted());
     		//System.out.println(usr1.getPrice());
     	}
     	

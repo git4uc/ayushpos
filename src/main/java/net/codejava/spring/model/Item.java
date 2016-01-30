@@ -18,6 +18,8 @@ public class Item {
 	private String reasondiscont;
 	private Category category;
 	private Supplier supplier;
+	private PurchaseOrder po;
+	private boolean deleted;
 	//private String image;
 	
 	public Item() {
@@ -193,5 +195,25 @@ public class Item {
 
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
+	}
+
+
+	public PurchaseOrder getPo() {
+		return po;
+	}
+
+
+	public void setPo(PurchaseOrder po) {
+		this.po = po;
+	}
+
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }

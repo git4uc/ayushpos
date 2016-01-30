@@ -50,7 +50,7 @@
        <property name="notes" column="notes" type="string"/>
         <property name="totAmt" column="totalamt" type="double"/>
         <many-to-one name="sup" column="supplierid" 
-         class="net.codejava.spring.model.Supplier" fetch="join" lazy="false" cascade="all"/>
+         class="net.codejava.spring.model.Supplier" fetch="join" lazy="false" update="false"/>
         
    </class>
    
