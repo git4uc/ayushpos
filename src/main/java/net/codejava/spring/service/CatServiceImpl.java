@@ -118,7 +118,7 @@ public class CatServiceImpl implements CatService{
 				
 						//catImpl.saveCategory(Category);
 				
-                	catImpl.deleteCategoryById(31);
+                //	catImpl.deleteCategoryById(31);
                 
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

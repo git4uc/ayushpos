@@ -4,7 +4,7 @@ public class Item {
     private int id;
 	private String code ;
 	private String name;
-	private long price;
+	private float price;
 	private int stock;
 	private long tax;
 	private long discount;
@@ -56,12 +56,12 @@ public class Item {
 	}
 
 
-	public long getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(long price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
