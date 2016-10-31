@@ -168,8 +168,10 @@ public class ItemDAOImpl implements ItemDAO {
 				"call GetItemByCode(:code)")
 				.addEntity(Item.class)
 				.setParameter("code", code);
-			List<Item> result= query.list();
-			if(!(result==null)|| result.iterator().hasNext()) return (Item) result.get(0);
+			List<Item> result= query.list(); 
+			//current change
+			if(!result.isEmpty()) 
+				return (Item) result.get(0);
 		return null;
 	}
 
