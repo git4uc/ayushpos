@@ -42,11 +42,20 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
 
         salesOrder.setOrderDetails(details);
         SalesOrderID = (Integer) session.save(salesOrder); 
-        tx.commit();
+
+
+        for (Iterator iterator2 =  details.iterator(); iterator2.hasNext();){
+            OrderDetail od = (OrderDetail) iterator2.next(); 
+            System.out.println("Item: " + od.getItemid() + "  Qty"+od.getQty()); 
+            Query query = session.createSQLQuery("Update  items set stock = stock + " + od.getQty() + " where id = '"+od.getItemid()+"'"); 
+        	  query.executeUpdate();
+      }
+
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
         e.printStackTrace(); 
      }finally {
+    	 tx.commit ();
         session.close(); 
      }
      return SalesOrderID;
@@ -63,6 +72,14 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
         java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
         so.setOrderDate(orddt);
         SalesOrderID = (Integer) session.save(so); 
+        List ods = so.getOrderDetails();
+
+        for (Iterator iterator2 =  ods.iterator(); iterator2.hasNext();){
+            OrderDetail od = (OrderDetail) iterator2.next(); 
+            System.out.println("Item: " + od.getItemid() + "  Qty"+od.getQty()); 
+            Query query = session.createSQLQuery("Update  items set stock = stock + " + od.getQty() + " where id = '"+od.getItemid()+"'"); 
+        	  query.executeUpdate();
+      }
         tx.commit();
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
@@ -83,12 +100,12 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
         for (Iterator iterator1 = 
         		salesorders.iterator(); iterator1.hasNext();){
            SalesOrder so = (SalesOrder) iterator1.next(); 
-           System.out.print("Order Number: " + so.getOrderNumber()); 
-           List ods = so.getOrderDetails();
+           System.out.print("Order Number + ID: " + so.getOrderNumber() +"  ID  "+ so.getId()); 
+  /**         List ods = so.getOrderDetails();
            for (Iterator iterator2 =  ods.iterator(); iterator2.hasNext();){
                  OrderDetail od = (OrderDetail) iterator2.next(); 
                  System.out.println("OrderDetail: " + od.getItemid()); 
-           }
+           } **/
         }
         tx.commit();
         return salesorders;
@@ -120,13 +137,16 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
      }
   }
   
-  /* Method to update */
+  /* Method to update - THIS METHOD DOES NOT SUBTRACT FROM ITEM*/
   public void updateSalesOrder(SalesOrder so ){
      Session session = sessionFactory.openSession();
      Transaction tx = null;
      try{
         tx = session.beginTransaction();
         session.update(so);
+    //    OrderDetail ord = (OrderDetail) so.getOrderDetails();
+        //for each order detail 
+        //update the qty from item
         tx.commit();
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
@@ -136,15 +156,22 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
      }
   }
   
-  /* Method to delete  */
-  public void deleteSalesOrder(Integer SalesOrderID){
+  /* Method to delete  - do not use this*/
+  public void deleteSalesOrder(Integer soid){
      Session session = sessionFactory.openSession();
      Transaction tx = null;
      try{
         tx = session.beginTransaction();
-        SalesOrder salesorder = 
-                  (SalesOrder)session.get(SalesOrder.class, SalesOrderID); 
-        session.delete(salesorder); 
+
+        SalesOrder salesorders = (SalesOrder) session.createQuery("FROM SalesOrder where id = '"+soid+"'").list().iterator().next(); 
+
+        List<OrderDetail> ods = salesorders.getOrderDetails();
+        for (Iterator iterator2 =  ods.iterator(); iterator2.hasNext();){
+            OrderDetail od = (OrderDetail) iterator2.next(); 
+            System.out.println("Item: " + od.getItemid() + "  Qty " +od.getQty()); 
+            Query query = session.createSQLQuery("Update  items set stock = stock - " + od.getQty() + " where id = '"+od.getItemid()+"'"); 
+        	  query.executeUpdate();
+      }
         tx.commit();
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
@@ -172,11 +199,11 @@ public List<SalesOrder> getOrderByOrderNo(String orderno) {
        		salesorders.iterator(); iterator1.hasNext();){
           SalesOrder so = (SalesOrder) iterator1.next(); 
           System.out.print("Order Number: " + so.getOrderNumber()); 
-          List ods = so.getOrderDetails();
+      /**    List ods = so.getOrderDetails();
           for (Iterator iterator2 =  ods.iterator(); iterator2.hasNext();){
                 OrderDetail od = (OrderDetail) iterator2.next(); 
                 System.out.println("OrderDetail: " + od.getItemid()); 
-          }
+          } **/
        }
 
        return salesorders;
@@ -192,9 +219,35 @@ return null;
 
 
 @Override
-public void deleteSalesOrder(int id) {
-	// TODO Auto-generated method stub
-	
+public void deleteSalesOrder(int soid) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    try{
+       tx = session.beginTransaction();
+     	List<SalesOrder> salesorders = session.createQuery("FROM SalesOrder where id = '"+soid+"'").list(); 
+     	SalesOrder so = null;
+        for (Iterator iterator1 = 
+        		salesorders.iterator(); iterator1.hasNext();){
+                  so = (SalesOrder) iterator1.next(); 
+        }
+       session.delete(so); 
+       List<OrderDetail> ods = so.getOrderDetails();
+       for (Iterator iterator2 =  ods.iterator(); iterator2.hasNext();){
+           OrderDetail od = (OrderDetail) iterator2.next(); 
+           System.out.println("Item: " + od.getItemid() + "  Qty " +od.getQty()); 
+           Query query = session.createSQLQuery("Update  items set stock = stock - " + od.getQty() + " where id = '"+od.getItemid()+"'"); 
+       	  query.executeUpdate();
+     }
+       tx.commit();
+    }catch (HibernateException e) {
+       if (tx!=null) tx.rollback();
+       e.printStackTrace(); 
+    }catch (Exception e) {
+        if (tx!=null) tx.rollback();
+        e.printStackTrace(); 
+    }finally {
+       session.close(); 
+    }	
 }
 
 
@@ -219,6 +272,36 @@ public SalesOrder getSalesOrderByID(int soid) throws Exception {
     session.close(); 
  }
 	return null;
+}
+
+/**
+ * This is a sample method- DO NOT USE THIS
+ * @param soid
+ * @return
+ * @throws Exception
+ */
+public boolean updateSalesOrderByID(int soid) throws Exception {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    tx = session.beginTransaction();
+    try{
+	/**Query query = session.createSQLQuery(
+			"call GetSOByOrderNO(:orderno)")
+			.addEntity(Item.class)
+			.setParameter("orderno", orderno);
+			List<SalesOrder> salesorders = query.list(); **/
+    	Query query = session.createSQLQuery("Update  orderheader set ordernumber = 'USHA111' where id = '"+soid+"'"); 
+    	query.executeUpdate();
+		tx.commit();
+      return true; 
+}catch (HibernateException e) {
+    if (tx!=null) tx.rollback();
+    e.printStackTrace(); 
+    return false;
+ }finally {
+    session.close(); 
+ }
+	
 }
 
 

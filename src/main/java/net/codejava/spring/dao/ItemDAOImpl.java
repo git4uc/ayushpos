@@ -70,7 +70,7 @@ public class ItemDAOImpl implements ItemDAO {
 	    				;
 	    			for(Iterator<Item> iterator = q.list().iterator(); iterator.hasNext();){
 	    				Item Item = iterator.next();
-	    				System.out.println(Item.getName());
+	    				System.out.println(Item.getId()+"  "+Item.getName() +"  "+Item.getStock());
 	    			}
 		return q.list();
 		}catch(Exception e){

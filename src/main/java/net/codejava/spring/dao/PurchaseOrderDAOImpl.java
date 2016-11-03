@@ -4,7 +4,8 @@ package net.codejava.spring.dao;
 
 import net.codejava.spring.model.PurchaseOrder;
 
-import org.hibernate.HibernateException; 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
@@ -26,12 +27,15 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
      Integer PurchaseOrderID = 0;
      try{
         tx = session.beginTransaction();
-        PurchaseOrder purchaseOrder = new PurchaseOrder(orderno);
+        PurchaseOrder po = new PurchaseOrder(orderno);
         Calendar calendar = Calendar.getInstance();
         java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
-        purchaseOrder.setOrderDt(orddt);
+        po.setOrderDt(orddt);
        // purchaseOrder.setOrderDetails(details);
-        PurchaseOrderID = (Integer) session.save(purchaseOrder); 
+        PurchaseOrderID = (Integer) session.save(po); 
+        Query query = session.createSQLQuery("Update  items set stock = stock + " + po.getQty() + " where id = '"+po.getItemId()+"'"); 
+     	  query.executeUpdate();
+
         tx.commit();
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
@@ -53,6 +57,9 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
         java.sql.Date orddt = new java.sql.Date(calendar.getTime().getTime());
         po.setOrderDt(orddt);       
         PurchaseOrderID = (Integer) session.save(po); 
+        Query query = session.createSQLQuery("Update  items set stock = stock + " + po.getQty() + " where id = '"+po.getItemId()+"'"); 
+     	  query.executeUpdate();
+
         tx.commit();
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
@@ -73,8 +80,8 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 				List<PurchaseOrder> purchaseorders = session.createQuery("FROM PurchaseOrder").list(); 
         for (Iterator<PurchaseOrder> iterator1 = 
         		purchaseorders.iterator(); iterator1.hasNext();){
-           PurchaseOrder so = iterator1.next(); 
-           System.out.print("Order Number: " + so.getOrderNumber()); 
+           PurchaseOrder po = iterator1.next(); 
+           System.out.print("Order ID: " + po.getId()); 
 
         }
         tx.commit();
@@ -124,14 +131,17 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
   }
   
   /* Method to delete  */
-  public void deletePurchaseOrder(Integer PurchaseOrderID){
+  public void deletePurchaseOrder(int PurchaseOrderID){
      Session session = sessionFactory.openSession();
      Transaction tx = null;
      try{
         tx = session.beginTransaction();
-        PurchaseOrder purchaseorder = 
+        PurchaseOrder po = 
                   (PurchaseOrder)session.get(PurchaseOrder.class, PurchaseOrderID); 
-        session.delete(purchaseorder); 
+        session.delete(po); 
+        Query query = session.createSQLQuery("Update  items set stock = stock - " + po.getQty() + " where id = '"+po.getItemId()+"'"); 
+   	  query.executeUpdate();
+
         tx.commit();
      }catch (HibernateException e) {
         if (tx!=null) tx.rollback();
@@ -174,11 +184,6 @@ return null;
 }
 
 
-@Override
-public void deletePurchaseOrder(int id) {
-	// TODO Auto-generated method stub
-	
-}
 
 
 

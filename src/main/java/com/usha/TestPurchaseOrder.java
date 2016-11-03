@@ -3,6 +3,7 @@ package com.usha;
  import java.util.*;
 
 import net.codejava.spring.dao.OrderDAOImpl;
+import net.codejava.spring.dao.PurchaseOrderDAOImpl;
 import net.codejava.spring.dao.SalesOrderDAOImpl;
 import net.codejava.spring.model.Certificate;
 import net.codejava.spring.model.Employee;
@@ -10,38 +11,35 @@ import net.codejava.spring.model.Employee;
 
 
 import net.codejava.spring.model.OrderDetail;
+import net.codejava.spring.model.PurchaseOrder;
 import net.codejava.spring.model.SalesOrder;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestSalesOrder {
+public class TestPurchaseOrder {
  
 	
   public static void main(String[] args) {
 	     ApplicationContext context = new ClassPathXmlApplicationContext("servlet-context.xml");
 
 
-     /* Let us have a set  */
-     List set1 = new ArrayList();
-     set1.add(new OrderDetail(330,23,23.4));
-     set1.add(new OrderDetail(331,36,45.6));
-        
      /* Add */
-		SalesOrderDAOImpl sodao = (SalesOrderDAOImpl) context.getBean("salesorderDoa");
+		PurchaseOrderDAOImpl podao = (PurchaseOrderDAOImpl) context.getBean("purchaseorderDoa");
 
-   //  Integer soID1 = sodao.addSalesOrder("OrderNO1", set1);
-		SalesOrder so = new SalesOrder();
-		so.setOrderNumber("NEWONEWHOLE");
-		so.setOrderDetails(set1);
+
+		PurchaseOrder po = new PurchaseOrder();
+		po.setOrderNumber("NEWONEWHOLE");
+		po.setItemId(331);
+		po.setQty(200);
 	/**	Hibernate: insert into orderheader (ordernumber, orderdate, totdiscount) values (?, ?, ?)
 		Hibernate: insert into orderdetail (Item_id, qty, price) values (?, ?, ?) **/
-	//	Integer soID1 = sodao.addSalesOrder(so);
+	//	Integer poID1 = podao.addPurchaseOrder(po);
 		 
      /* List  */
-  //   sodao.listSalesOrders();
+   //  podao.listPurchaseOrders();
      
-     sodao.deleteSalesOrder(102);
+     podao.deletePurchaseOrder(50);
      /* Update  */
  
    /**  SalesOrder so1 = (SalesOrder)sodao.listSalesOrders().iterator().next();
@@ -56,7 +54,7 @@ public class TestSalesOrder {
     // sodao.updateSalesOrder(soID1, "SSSDDDNEW"); **/
   //  sodao.updateSalesOrder(so1);
      /* Delete  */
-//     sodao.deleteSalesOrder(soID1);
+     ;
 
     // List down all 
      
@@ -68,7 +66,7 @@ public class TestSalesOrder {
 		e.printStackTrace();
 	}
      **/
-     List so11 = sodao.listSalesOrders();
+  //   List so11 = sodao.listSalesOrders();
  
 
   }
